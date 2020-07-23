@@ -81,6 +81,414 @@
     
     
     
+    <article id="post-idea快捷键" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/"
+    >idea快捷键</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-date">
+  <time datetime="2020-07-20T03:16:12.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>ctrl+alt+v 自动生成对象</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-ioc与aop" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/17/ioc%E4%B8%8Eaop/"
+    >ioc与aop</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/17/ioc%E4%B8%8Eaop/" class="article-date">
+  <time datetime="2020-07-17T04:41:23.000Z" itemprop="datePublished">2020-07-17</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>控制反转ioc 面向切面编程aop</p>
+<p>I0C本质.<br>控制反转loC（Inversion of Control），是一种设计思想，DI（依赖注入）是实现IoC的一种方法，也有人认为DI只是loC的另一种说法。没有IoC的程序中，我们使用面向对象编程，对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。<br>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
+<ul>
+<li>‘控制反转是一种通过描述（XML或注解）并通过第3三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection，DI）。**</li>
+</ul>
+<p>·Hello对象是谁创建的？<br>hello对象是由Spring创建的<br>·Hello对象的属性是怎么设置的？<br>hello对象的属性是由Spring容器设置的，<br>这个过程就叫控制反转：<br>控制：谁来控制对象的创建I传统应用程序的对象是由程序本身控制创建的，使用Spring后，对象是由Spring来创建的.<br>反转：程序本身不创建对象，而变成被动的接收对象.<br>依赖注入：就是利用set方法来进行注入的.<br>IOC是一种编程思想，由主动的编程变成被动的接收.<br>可以通过newClassPathXmlApplicationContext去浏览一下底层源码 .<br>OK，到了现在，我们彻底不用再程序中去改动了，要实现不同的操作，只需要在xml配置文件中进行修改，所谓的IoC，一句话搞定：对象由Spring来创建，管理，装配！</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">《！一&amp;lt； ！&amp;ndash；第一·神， 下示賦値！ &amp;ndash；&amp;gt；一》</span><br><span class="line">《！一《bean id="user" cLass= "com. kuang. pojo.User"》一》</span><br><span class="line">《！一《constructor一arg index= "Ѳ" vaLue= " E if ÉJava"/》一》</span><br><span class="line">《！一《/bean》一》</span><br><span class="line"></span><br><span class="line">《！一第二种方式：通过类型创建，不建议使用！ 一》</span><br><span class="line">《！一《bean id="user" cLass= "com. kuang. pojo.User"》一》</span><br><span class="line">《！一《constructor一arg type= "java. lang. String" value="qinjiang"/》一》《！一《/bean》一》</span><br><span class="line"></span><br><span class="line">《！一第三种， 直接通过参数名来设置一》</span><br><span class="line">《bean id="user" class="com. kuang . pojo.User"》</span><br><span class="line">《 constructor一arg name="name" value="k äjtÉ"/》</span><br><span class="line">《/bean》</span><br></pre></td></tr></table></figure>
+
+<p>5.2， BeanJtä<br>1 《！一2<br>id ： bean 的唯一 标识符，也就是相当于我们学的对象名<br>class ： bean 对象所对应的全限定名：包名+类型<br>4<br>name ：也是别名，而且name可以同时取多个别名<br>6<br>《bean id=”userT” class=”com. kuang. pojo.UserT” name= =”user2 u2，u3；u4”》<br>7<br>《property name=”name” value=” jtj å【JF一/“‘/》<br>8 《/bean》</p>
+<p>5.3、import<br>这个import， 一般用于团队开发使用，他可以将多个配置文件，导入合并为一个<br>假设，现在项目中有多个人开发，这三个人复制不同的类开发.不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个总的！<br>·张三<br>·李四<br>·王五<br>·applicationContext.xml<br>1 《i mport resource=”beans. xm】”/》<br>2 《import resqurce=”beans2. xm1”/》<br>3 《import resource=”beans3. xm1”/》<br>使用的时候，直接使用总的配置就可以了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> Address address;</span><br><span class="line"><span class="keyword">private</span> String[] books ;</span><br><span class="line"><span class="keyword">private</span></span><br><span class="line">List&lt;String&gt; hobbys ;</span><br><span class="line"><span class="keyword">private</span> Map&lt;String,String&gt; card; <span class="keyword">private</span> Set&lt;String&gt; games;</span><br><span class="line"><span class="keyword">private</span> String wife;</span><br><span class="line"><span class="keyword">private</span> Properties info;</span><br><span class="line"></span><br><span class="line">《bean id=<span class="string">"student"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">" com. kuang. pojo . Student"</span> 》《！一第一一种， 普通值注入，value一》</span><br><span class="line">《property name=<span class="string">"name"</span> value=<span class="string">"小明"</span>/》</span><br><span class="line">《第二种bean注入》</span><br><span class="line">《property name=<span class="string">" address"</span> ref=<span class="string">"address"</span>/》</span><br><span class="line">《！一数组一》</span><br><span class="line">《property name= <span class="string">"books"</span>》</span><br><span class="line">《array》</span><br><span class="line">《value》红楼梦《/value》</span><br><span class="line">《value》西游记《/value》</span><br><span class="line">《value》水浒传《/value》</span><br><span class="line">《value》三国演义《/value》</span><br><span class="line">《/array》</span><br><span class="line">《/ property》</span><br><span class="line">《！一List一》</span><br><span class="line">《property name= <span class="string">"hobbys"</span>》</span><br><span class="line">《list 》</span><br><span class="line">《value》听歌《/value》</span><br><span class="line">《value 》看电影《/value》</span><br><span class="line">《value》打代码《/value》</span><br><span class="line">《/list》</span><br><span class="line">《/property》</span><br><span class="line">《！一Map一》</span><br><span class="line">《property name=<span class="string">"card"</span>》</span><br><span class="line">《map》</span><br><span class="line">《entry kev=<span class="string">""</span> value=<span class="string">""</span>/》</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!一Set一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt; <span class="attr">property</span> <span class="attr">name</span>=<span class="string">" games"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>LOL<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>COC<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>BOB<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/ <span class="attr">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!一null一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wife"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">null</span>/ &gt;</span></span><br><span class="line">I</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!一Properties一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"driver"</span>&gt;</span>20190525<span class="tag">&lt;/<span class="name">prop</span>&gt;</span> <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"url"</span>&gt;</span> jj<span class="tag">&lt;/ <span class="attr">prop</span>&gt;</span></span><br><span class="line">&lt;prop key="username" &gt;root&lt; /prop&gt; &lt;prop key=" password" 123456&lt;1 prop&gt; &lt;/props&gt;</span><br><span class="line"><span class="tag">&lt;/ <span class="attr">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">/beans&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">《？xm1 version="1. O" encoding="UTF一8"？》</span><br><span class="line">《beans xmlns="http：//www. springframework. org/ schema/beans'</span><br><span class="line">xmlns：xsi="http： //www. w3. org/ 2001/XML Schema一instance"</span><br><span class="line">xmlns：p="http：/ /www. springf ramework . org/schema/ p"</span><br><span class="line">xmlns：c="http：//www. springf ramework . org/schema/c"</span><br><span class="line">xsi ： schemaLocati on="http： / /www. springframework. org/schema/beanshttps ：//www. springf ramework. org/schema/beans/spring一beans. xsd"》</span><br><span class="line">《！一p命名空间注入，可以直接注入属性的值： property一》</span><br><span class="line">《bean id="user" class="com. kuang. pojo.User" p：name="##" p：age="18"/》</span><br><span class="line">《！一C命名空间注入，通过构造器注入： construct一args一》</span><br><span class="line">《bean id="user2" class="com. kuang. pojo.User" c：age="18" c：name="XEpt"/》</span><br><span class="line">《/beans》</span><br></pre></td></tr></table></figure>
+<p>注意<br>xmlns：p=”http：/ /www. springf ramework . org/schema/ p”<br>xmlns：c=”http：//www. springf ramework . org/schema/c”</p>
+<p> 1.单例模式（Spring默认机制）<br>1 | 《bean id=”user2” class=”com. kuang. pojo. User” c：age=”18” c：name=”狂神”scope=”singleton”/》<br>2.原型模式：每次从容器中get的时候，都会产生一个新对象！<br>1 《bean id=”accountService” class=”com. something. DefaultAccountService”scope=”prototype”/》<br>3.其余的request、session、 application、 这些个只能在web开发中使用到！ </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">7.2、ByName自动装配</span><br><span class="line">2 byName：会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid！ 3</span><br><span class="line">4 《bean id="peop1e" class="com. kuang. pojo. Peop1e" autowi re="byName"》</span><br><span class="line">5</span><br><span class="line">《property name="name" value=" 小狂神呀"/》</span><br><span class="line">6 《/bean》</span><br><span class="line">7.3、ByType自动装配</span><br><span class="line">1</span><br><span class="line">《bean class="com. kuang. pojo. Cat"/》</span><br><span class="line">2</span><br><span class="line">《bean class="com. kuang. pojo. Dog"/》</span><br><span class="line">34</span><br><span class="line">《！一 </span><br><span class="line">5</span><br><span class="line">byName：会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid！</span><br><span class="line">6</span><br><span class="line">byType：会自动在容器上下文中查找，和自己对象属性类型相同的bean ！</span><br><span class="line">7</span><br><span class="line">一》</span><br><span class="line">8</span><br><span class="line">《bean id="people" class="com. kuang. pojo. People" autowi re="byType"》</span><br><span class="line">9</span><br><span class="line">《property name="name" value=" 小狂神呀"/》</span><br><span class="line">10</span><br><span class="line">《/bean》</span><br><span class="line">11</span><br></pre></td></tr></table></figure>
+
+<p>spring注解<br>@component = <bean id class><br>    使用注解，在xml配置上这句<br>&lt;context:component-scan base-package=””&gt;<br><a href="context:annotation-config">context:annotation-config</a><br>还有几个衍生注解<br>dao @repository<br>service @service<br>controller @controller</bean></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-IO流体系结构" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/15/IO%E6%B5%81%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"
+    >IO流体系结构</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/15/IO%E6%B5%81%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="article-date">
+  <time datetime="2020-07-15T07:44:05.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>处理流之感： 对象流<br>·ObjectInputStream和OjbectOutputSteam<br>➢用于存储和读取基本数据类型数据或对象的处理流。它的强大之处就是可<br>以把Java中的对象写入到数据源中，也能把对象从数据源中还原回来。<br>· 序列化：用ObjectOutputStream类 保存基本类型数据或对象的机制 。<br>· 反序列化：用ObjectInputStream类 读取基本类型数据或对象的机制<br>·ObjectOutputStream 和ObjectInputStream不能序列化static和transient修饰的成员变量</p>
+<p>·凡是实现Serializable接口的类都有一个表示序列化版本标识符的静态变量：➢private static final long serialVersionUID；<br>➢serialVersionUID用来表明类的不同版本间的兼容性。简言之，其目的是以序列化时象进行版本控制，有关各版本反序列化时是否兼容。<br>➢如果类没有显示定义这个静态变量，它的值是Java运行时环境根据类的内部细节自动生成的。若类的实例变量做了修改，serialVersionUID 可能发生变化。故建议，<br>。 显式声明。<br>简单来说，Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的<br>serialVersionUID与本地相应实体类的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。（InvalidCastException）</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-java集合" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/09/java%E9%9B%86%E5%90%88/"
+    >java集合</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/09/java%E9%9B%86%E5%90%88/" class="article-date">
+  <time datetime="2020-07-09T09:16:50.000Z" itemprop="datePublished">2020-07-09</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>一、集合框架的概述<br>1.集合、数组都是对多个数据进行存储操作的结构，简称Java 容器。<br>说明：此时的存储，主要指的是内存层面的存储，不涉及到持久化的存储（<br>》 一 旦初始化以后，其长度就确定了。<br>》数组一旦定义好，其元素的类型也就确定了。我们也就只能操作指定类型的数据了。<br>比如： String【】 arr；int【】 arr1；object【】 arr2；<br>2.2数组在存储多个数据方面的缺点：<br>》一旦初始化以后，其长度就不可修改。<br>》数组中提供的方法非常有限，对于添加、删除、插入数据等操作，非常不便，同时效率不高。》获取数组中实际元素的个数的需求，数组没有现成的属性或方法可用<br>》数组存储数据的特点：有序、可重复。对于无序、不可重复的需求，不能满足。</p>
+<p>Java集合可分为Collection和Map两种体系<br>➢Collection接口：单列数据，定义了存取一组对象的方法的集合<br>List： 元素有序、可重复的集合<br>Set： 元素无序、不可重复的集合<br>➢Map接口：双列数据，保存具有映射关系“key一value对”的集合</p>
+<p>面试题： ArrayList、 LinkedList、Vector三者的异同？<br>同：三个类都是实现了List接口，存储数据的特点相同：存储有序的、可重复的数据<br>不同：！**<br>/一一Collection接口：单列集合，用来存储一个一个的对象</p>
+<ul>
+<li>/一一List接口： 存储有序的、可重复的数据。 一》“动态”数组，替换原有的数组<br>一ArrayList： 作为List接口的主要实现类；线程不安全的，效率高；底层使用0bject【】 eLementData存储</li>
+<li>/一一LinkedList： 对于频繁的插入、删除操作，使用此类效率比ArrayList高；底层使用双向链表存储<br>/一一Vector：作为List接口的古老实现类；线程安全的，效率低；底层使用object【】 eLementData存储</li>
+</ul>
+<p>List<br>void add（int index， object ele）：在index位置插λele元素<br>boolean addALL（int index， Collection eles）： Mindex位置开始将eles中的所有元素添加进来Object get（int index）：获取指定index位置的元素<br>int indexOf（object obj）： 返回obj在集合中首次出现的位置<br>int lastIndexOf（Object obj）： 返回obj在当前集合中末次出现的位置<br>Object remove（int index）： 移除指定index位置的元素，并返回此元素<br>object set（int index， Object ele）：设置指定index位置的元素为ele<br>List subList（int fromIndex， int toIndex）：返回从fromIndex到toIndex位置的子集合</p>
+<p>怠結:常用方法<br>増: add(object obj)<br>刪!: remove(int index) / remove(object obj)改: set(int index, Object ele)<br>査: get(int index)<br>插: add(int index, Object ele)<br>長度: size()<br>遍万:①Iterator迭代器方式<br>@増彊for循珎<br>⑨普通的循珎</p>
+<ul>
+<li>Set接口的框架：</li>
+<li></li>
+<li>/一一Collection接口： 单列集合，用来存储一个一个的对象</li>
+<li>. /一一Set接口： 存储无序的、不可重复的数据 一》高中讲的“集合”</li>
+<li>/一一HashSet： 作为Set接口的主要实现类；线程不安全的；可以存储null 值</li>
+<li>/一一LinkedHashSet： 作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历</li>
+<li>/一一TreeSet：可以按照添加对象的指定属性，进行排序。</li>
+<li></li>
+</ul>
+<p>/一一Map：双列数据，存储key一value 对的数据一一 类似于高中的函数： y = f（x）<br>/一一HashMap：作为Map的主要实现类；线程不安全的，效率高；存储nulL 的key和value<br>    /一一LinkedHashMap：保证在遍历map元素时，可以按照添加的顺序实现遍历。<br>原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前一个和后一个元对于频繁的遍历操作，此类执行效率高FHashMap。<br>/一一 TreeMap ：保证按照添加的key一value对进行排序，实现排序遍历。此时考虑key的自然排序或定制排序，底层使用红黑树<br>/一一Hashtable：作为古老的实现类；线程安全的，效率低；不能存储null 的key和value<br>    /一一Properties：常用来处理配置文件。key和value都是String类型<br>HashMap的底层：数组+链表（jdk7及之 前）<br>数组+链表+红黑树（jdk 8）</p>
+<p>二、Map结构的理解：<br>Map中的key：无序的、不可重复的，使用Set 存储所有的key 一一》 key所在的类要重写equals（）和hashCode（） （ 以HashMap为例）<br>Map中的value：无序的、可重复的，使用ColLection存储所有的value 一一》value所在的类要 重写equals（）一个键值对： key一value构成了一个Entry对象 。<br>Map中的entry：无序的、不可重复的，使用Set 存储所有的entry</p>
+<p>jdk8相较于jdk7在底层实现方面的不同： .</p>
+<ol>
+<li>new HashMap（）：底层没有创建一个长度为16的数组</li>
+<li>jdk 8底层的数组是： Node【】， 而非Entry【】</li>
+<li>首次调用put（）方法时， 底层创建长度为16的数组</li>
+<li>jdk7底层结构只有：数组+链表。jdk8 中底层结构：数组+链表+红黑树。<br>当数组的某一个索引位置上的元素以链表形式存在的数据个数》 8且当前数组的长度》 64时，此时此索引位置上的所有数据改为使用红黑树存储。</li>
+</ol>
+<p>HashMap源碼中的重要常量<br>DEFAULT_ INITIAL_ CAPACITY ： HashMap的默认容量，16<br>MAXIMUM_ CAPACITY ： HashMap的最大支持容量， 2^30<br>DEFAULT_ <em>LOAD</em> FACTOR： HashMap的默认加载因子<br>TREEIFY THRESHOLD： Bucket中链表长度大于该默认值，转化为红黑树<br>UNTREEIFY_ THRESHOLD： Bucket中 红黑树存储的Node小于该默认值，转化为链表MIN_ TREEIFY_ CAPACITY：桶中的Node被树化时最小的hash表容量。（ 当桶中Node的数量大到需要变红黑树时，若hash表容量小于MIN_ TREEIFY_ <em>CAPACITY时，此时应执行。resize扩容操作这个MIN</em> TREEIFY CAPACITY的值至少是TREEIFY_ THRESHOLD的4倍。）<br>table：存储元素的数组，总是2的n次幂<br>entrySet：存储具体元素的集<br>size： HashMap中存 储的键值对的数量<br>modCount： HashMap扩 容和结构改变的次数。<br>threshold：扩容的临界值，=容量*填充因子<br>loadFactor：填充因子</p>
+<p>添加、删除、修改操作：<br>object put（object key， object value）：将指定key一value 添加到（或修改）当前map对象中void putALl（Map m）： 将m中的所有key一value对存放到当前map中<br>object remove（object key）：移除指定key的key一value对，并返回value<br>void clear（）：清空当前map中的所有数据</p>
+<p><img src="/2020/07/09/java%E9%9B%86%E5%90%88/1.PNG" alt></p>
+<p><img src="/2020/07/09/java%E9%9B%86%E5%90%88/2.PNG" alt></p>
+<p>面试问题<br>hashmap的底层原理<br>put()<br>第一步首先将kv封装到node对象中，第二部会底层会调用k的hashcode方法得出hash值，第三部通过哈希算法将hash转换成数组下标，下标位置如果没有任何元素，就会把node添加到这个位置上来，如果下表的位置上有链表，此时会拿着k和链表上每个k值equal，如果equal返回false，那么新的节点将被添加到链表末尾，如果返回true，那么这个节点value将会被取代。<br>get()<br>先调用k的hashcode得出它的hash值，并通过哈希算法转换成数组数组的下标，得到数组下标后定位到这个位置上，如果这个位置没有放元素的话，那么直接返回null，如果位置上有链表，那么他就拿着k跟链表上的k进行equal比较，如果所有方法都返回false，那么get()方法返回null，如果返回true，那么get方法返回最终这个value</p>
+<p>如果哈希表单向链表中元素超过8个，那么单向链表这种数据结构会变成红黑树数据结构。当红黑树上的节点数量小于6个，会重新把红黑树变成单向链表数据结构。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-java常用类的概述" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/07/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%A6%82%E8%BF%B0/"
+    >java常用类的概述</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/07/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time datetime="2020-07-07T02:30:31.000Z" itemprop="datePublished">2020-07-07</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>String类<br>String、StringBuffer、StringBuilder三 者的异同？<br>String：不可变的字符序列；底层使用char【】存储<br>StringBuffer：可变的字符序列；线程安全的，效率低；底层使用char【】存储<br>StringBuilder：可变的字符序列； jdk5. 日新增的，线程不安全的，效率高；底层使用char【】存储</p>
+<p>总结:<br>增: append(xxx)<br>删： deLete(int start, int end)<br>改: setCharAt(int n , char ch) / replace(int start,int end, String str)<br>查: charAt(int n )<br>插: insert(int offset, xxx)<br>长度: Length();<br>遍历: for() + charAt()</p>
+<p>SimpleDateFormat</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat sdf =new SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">Date date = new Date();</span><br><span class="line">String format = sdf.format(date);</span><br><span class="line">System.out.println(format);</span><br><span class="line">逆过程</span><br><span class="line">Date date2 =sdf.parse(<span class="string">"2020-02-18 14:22:12"</span>)</span><br><span class="line">System.out.println(date2)</span><br></pre></td></tr></table></figure>
+
+<p>练习二 字符串“2020-02-12”转换为java.sql.Date</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String birth = <span class="string">"2020-02-12"</span>;</span><br><span class="line">SimpleDateFormat sdf = new SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">Date date = sdf.parse(birth);</span><br><span class="line">java.sql.Date birthdate= new java.sql.Date (date.getTime());</span><br><span class="line">System.out.println(birthdate);</span><br></pre></td></tr></table></figure>
+<p>Calendar calendar = Calendar.getInstance();<br>int days =calendar.get(Calendar.Day_Of_Month);</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">int days =calendar.get(Calendar.Day_Of_Month);</span><br></pre></td></tr></table></figure>
+<p>Calendar 的实例是系统时间的抽象表示，通过get()方法取得想要的时间信息</p>
+<p>注意：获取月份时，一月是0，以此类推 获取星期是，周日是1；</p>
+<p>JDK8中时间API<br>LocalDate LocalTime LocalDateTime<br>DateTimeFormat格式化时间</p>
+<p>枚举类<br>使用enum关键字定义枚举类<br>试用例子<br>public enum SeasonEnum{<br>    SPRING(“春天”,“春暖花开”),<br>    SUMMER(“夏天”,”夏日炎炎”),<br>    AUTUMN(“秋天”,“秋高气爽”),<br>    WINTER(“冬天”，“冰天雪地”);</p>
+<pre><code>private final String seasonName;
+private final String seasonDec;
+
+private SeasonEnum(srtring seasonName,string seasonDec){
+    this.seasonName =seasonName;
+    this.seasonDec =seasonDec;
+}
+public String getSeasonName(){
+    return seasonName;
+}
+public String getSeasonDec(){
+    return seasonDec;
+}</code></pre><p>}</p>
+<p>}</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-小锅" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -335,8 +743,30 @@
       
 
       
-      <p>一、反射的概述<br>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。<br>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.</p>
+      <p>一、反射的概述 特点：动态性<br>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。<br>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.</p>
 <p>以上的总结就是什么是反射<br>反射就是把java类中的各种成分映射成一个个的Java对象<br>例如：一个类有：成员变量、方法、构造方法、包等等信息，利用反射技术可以对一个类进行解剖，把个个组成部分映射成一个个对象。<br>     （其实：一个类中这些成员方法、构造方法、在加入类中都有一个类来描述）<br>如图是类的正常加载过程：反射的原理在与class对象。<br>熟悉一下加载的时候：Class对象的由来是将class文件读入内存，并为之创建一个Class对象。</p>
+<p>·Java反射机制提供的功能<br>➢在运行时判断任意一个对象所属的类<br>➢在运行时构造任意一个类的对象<br>➢在运行时判断任意一个类所具有的成员变量和方法➢在运行时获取泛型信息<br>➢在运行时调用任意一个对象的成员变量和方法➢在运行时处理注解<br>➢生成动态代理</p>
+<p>考点<br>反射机制与封装性<br>通过new和反射调用，用哪个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void test3（） throws ClassNotFoundException 【</span><br><span class="line">//方式一： 调用运行时类的属性： .class</span><br><span class="line">Class clazz1 = Person.class；</span><br><span class="line">System. out . println（clazz1）；</span><br><span class="line">//方式二：通过运行时类的对象，调用getCLass（）</span><br><span class="line">Person p1 = new</span><br><span class="line">Pelson（）；</span><br><span class="line">Class c1azz2 = p1.getClass（）；</span><br><span class="line">System. out. println（clazz2）；</span><br><span class="line">1/方式三：凋用Class 的静杰方法： forName（String classPath）</span><br><span class="line">Class clazz3 = Class . forName （<span class="string">"com. atguigu. java.Person"</span>）；</span><br><span class="line">clazz3 = Class . forName（ <span class="string">"java. Lang. String"</span>）；</span><br><span class="line">System. out . println（clazz3）；</span><br><span class="line">System . out. println（clazz1 == c1azz2）；</span><br><span class="line">System. out. println（clazz1 == clazz3）；</span><br><span class="line">//方式四：使用类的加载器： ClassLoader</span><br><span class="line">ClassLoader classLoader = ReflectionTest. class. getClassLoader（ ）；</span><br><span class="line">Class clazz4 = classLoader . loadClass（ name： <span class="string">"com. atguigu. java . Person"</span>）；</span><br><span class="line">System. out . println（clazz4）；</span><br></pre></td></tr></table></figure>
+<p>复制路径 点击copy reference</p>
+<p>代理模式<br>静态代理：在编译期间代理类和被代理类都确定下来，不利于程序的拓展，每一个代理类只能为一个接口服务<br>动态代理：是指客户通过代理类来调用其他对象的方法，并且是在程序运行时根据需要动态创建目标类的代理对象<br>动态优点：接口声明的方法都被转移到调用处理器的一个集中方法处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">interface ClothFactoryf&#123;</span><br><span class="line">void produceCloth( );</span><br><span class="line">&#125;</span><br><span class="line">//代理类</span><br><span class="line">class ProxyClothFactory implements ClothFactoryf&#123;</span><br><span class="line">private ClothFactory factory;//用被代理类进行实例化</span><br><span class="line">public ProxyClothFactory(ClothFactory factory)&#123;</span><br><span class="line">this.factory = factory;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public void <span class="function"><span class="title">produceCloth</span></span>()&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//被代理类</span><br><span class="line">class NikeClothFactory implements ClothFactoryf&#123;</span><br><span class="line">@Override</span><br><span class="line">public void produceCloth（） &#123;</span><br><span class="line">System. out . println（<span class="string">"Nike生产一批运动服"</span>）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class StaticProxyTest &#123;</span><br><span class="line">public static void main（String【】 args） &#123;</span><br><span class="line">//创建被代理类的对象</span><br><span class="line">ClothFactory nike = new NikeClothFactory（）；</span><br><span class="line">//创建代理类的对象</span><br><span class="line">ClothFactory proxyClothFactory = new ProxyClothFactory（nike）；</span><br><span class="line">proxyClothFactory . produceCloth（）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public interface HelloInterface &#123;</span><br><span class="line">    void sayHello();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Hello implements HelloInterface&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class HelloProxy implements HelloInterface&#123;</span><br><span class="line">    private HelloInterface helloInterface = new Hello();</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke sayHello"</span> );</span><br><span class="line">        helloInterface.sayHello();</span><br><span class="line">        System.out.println(<span class="string">"After invoke sayHello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        HelloProxy helloProxy = new HelloProxy();</span><br><span class="line">        helloProxy.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">输出：</span><br><span class="line">Before invoke sayHello</span><br><span class="line">Hello zhanghao!</span><br><span class="line">After invoke sayHello</span><br></pre></td></tr></table></figure>
+
+<p>动态代理<br>被代理类 和接口不变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class ProxyHandler implements InvocationHandler&#123;</span><br><span class="line">    private Object object;</span><br><span class="line">    public ProxyHandler(Object object)&#123;</span><br><span class="line">        this.object = object;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke "</span>  + method.getName());</span><br><span class="line">        method.invoke(object, args);</span><br><span class="line">        System.out.println(<span class="string">"After invoke "</span> + method.getName());</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        </span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br></pre></td></tr></table></figure>
+<p>新来一个接口还有被代理类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public interface ByeInterface &#123;</span><br><span class="line">    void sayBye();</span><br><span class="line">&#125;</span><br><span class="line">public class Bye implements ByeInterface &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayBye</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Bye zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        ByeInterface <span class="built_in">bye</span> = new Bye();</span><br><span class="line"></span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line">        InvocationHandler handler1 = new ProxyHandler(<span class="built_in">bye</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        ByeInterface proxyBye = (ByeInterface) Proxy.newProxyInstance(bye.getClass().getClassLoader(), bye.getClass().getInterfaces(), handler1);</span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">        proxyBye.sayBye();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br><span class="line">    Before invoke sayBye</span><br><span class="line">    Bye zhanghao!</span><br><span class="line">    After invoke sayBye</span><br></pre></td></tr></table></figure>
+<p>动态代理底层实现</p>
+<p>动态代理具体步骤：</p>
+<ol>
+<li>通过实现 InvocationHandler 接口创建自己的调用处理器；</li>
+<li>通过为 Proxy 类指定 ClassLoader 对象和一组 interface 来创建动态代理类；</li>
+<li>通过反射机制获得动态代理类的构造函数，其唯一参数类型是调用处理器接口类型；</li>
+<li>通过构造函数创建动态代理类实例，构造时调用处理器对象作为参数被传入。<br>详情参考<br><a href="https://www.jianshu.com/p/9bcac608c714" target="_blank" rel="noopener">https://www.jianshu.com/p/9bcac608c714</a></li>
+</ol>
+<p>aop<br>通过预编译和运行期动态代理实现程序功能的一种技术</p>
 
       
       <!-- reward -->
@@ -440,371 +870,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="built_in">test</span>&#123;</span><br><span class="line"><span class="function"><span class="title">psvm</span></span>()&#123;</span><br><span class="line">	server server =new server();</span><br><span class="line">	proxy p= new proxy(server);</span><br><span class="line">	p.browse();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface network&#123;</span><br><span class="line">	public void browse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class server implements network&#123;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		sout<span class="string">"aaa"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class proxy implements network&#123;</span><br><span class="line">	private network n;</span><br><span class="line">	public proxy(network n)&#123;</span><br><span class="line">		this.n = n;</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">check</span></span> ()&#123;</span><br><span class="line">		sout<span class="string">"检查"</span></span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		check();</span><br><span class="line">		work.browse;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>工厂模式<br>实现了创建者与调用者的分离，即将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。</p>
-<p>内部类</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-多线程" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
-    >多线程</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="article-date">
-  <time datetime="2020-06-04T03:42:37.000Z" itemprop="datePublished">2020-06-04</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>先说说两个概念<br>并行(parallel)：指在同一时刻，有多条指令在多个处理器上同时执行。所以无论从微观还是从宏观来看，二者都是一起执行的。<br>并发(concurrency)：指在同一时刻只能有一条指令执行，但多个进程指令被快速的轮换执行，使得在宏观上具有多个进程同时执行的效果，但在微观上并不是同时执行的，只是把时间分成若干段，使多个进程快速交替的执行。<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B.PNG" alt><br>程序：一段静态代码<br>进程：是指一个内存中运行的应用程序<br>线程：是进程运行中的一个执行单元<br>多线程好处：效率高，每个线程互不影响</p>
-<p>线程的生命周期<br>➢新建：当一个Thread类或其 子类的对象被声明并创建时，新生的线程对象处于新建<br>状态<br>➢就绪：处于新建状态的线程被start（）后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源<br>➢运行：当就绪的线程被调度并获得CPU资源时，便进入运行状态，run（）方法定义了 线程的操作和功能<br>➢阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出CPU并临时中止自己的执行，进入阻塞状态<br>➢死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束</p>
-<p>线程调度<br>分时调度<br>所有线程轮流使用cpu的使用权，平均分配每个线程占用cpu的时间<br>抢占时调度<br>优先让优先级高的线程使用cpu，如果线程等级相同，就随机分配</p>
-<p>创建多线程方法<br>1.继承thread父类重写run方法，创建子类对象调用start<br>2.实现Runnable接口，重写run方法，实例化然后Thread t1 =new Thread(实例化的对象)； t1.start();</p>
-<p>比较创建线程的两种方式<br>开发中优先选择Runnable接口的方法<br>1.实现的方式没有类的单继承的局限性<br>2.实现的方式更适合处理多个线程的共享数据</p>
-<p>Thread中常用的方法<br>1.start（）启动当前线程<br>2.run（）重写Thread类的方法，将创建的线程声明在此方法里<br>3.currentThread（）静态方法 返回执行当前代码的线程<br>4.getName（）获取当前线程的名字<br>5.setName（）设置当前线程的名字<br>6.yield（）释放当前cpu的执行权<br>7.join（）在线程a中调用线程b的join（），此时a线程就进入阻塞状态，直到线程b完全执行后，线程a才结束阻塞状态<br>8.stop（）已过时，停止当前线程<br>9.sleep（long millitime）让当前线程睡眠一段时间，在当前状态是阻塞状态<br>10.isAlive（）判断当前线程是否存活<br>11.getPriority()获取线程的优先级<br>12.setPriority()设置线程的优先级</p>
-<p><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.PNG" alt></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-关于maven下载慢的问题" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"
-    >关于maven下载慢的问题</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2020-05-28T10:59:00.000Z" itemprop="datePublished">2020-05-28</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>今天用maven创建项目时，遇到一点问题就是下载速度过慢，然后换了一下阿里云的景象，主要操作如下<br>在maven的con下setting文件里添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line"></span><br><span class="line">&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line"></span><br><span class="line">&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">&lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">&lt;/mirror&gt;</span><br></pre></td></tr></table></figure>
-<p>然后在idea的maven配置runner里加-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true到vm里</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-今天讲讲Springmvc那些事" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/"
-    >今天讲讲Spring那些事</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="article-date">
-  <time datetime="2020-05-27T05:07:55.000Z" itemprop="datePublished">2020-05-27</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>今天老师在讲Springmvc的拦截器，想着以前mvc的配置那些忘得的七七八八，然后今天温故一下，顺便做个笔记。这篇就先温故一下SpringIOC吧<br>Springframwork 是java EE非常优秀的一个框架，核心是ioc（控制反转）和aop（面向切面编程），在Springframework中，认为一切java类都是资源，而这些资源都是bean，容纳这些bean都是spring所提供的ioc容器，所以Spring是基于bean的编程</p>
-<p>Spring有以下优点：<br>一低侵入式设计<br>一独立于各种应用服务器<br>一降低业务对象的复杂性，提高了组件间的解耦.允许通用任务进行集中式管理<br>一提供了与第三方框架的良好整合<br>开放度高，组合方便</p>
-<p>然后下面做了一个小案例，定义一个person借口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line">    void love();</span><br><span class="line">    String showNname();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义两个类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Man implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private Person lover;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person <span class="function"><span class="title">getLover</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setLover(Person lover) &#123;</span><br><span class="line">        this.lover = lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">love</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"he loves "</span>+ lover.showNname());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">showNname</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Woman implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private Person lover;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person <span class="function"><span class="title">getLover</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setLover(Person lover) &#123;</span><br><span class="line">        this.lover = lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">love</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"she loves "</span>+ lover.showNname());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">showNname</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置bean的xml</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">       xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">       xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"man"</span> class=<span class="string">"ozh.Impl.Man"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"name"</span> value=<span class="string">"jack"</span>&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"lover"</span> ref=<span class="string">"woman"</span>&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"woman"</span> class=<span class="string">"ozh.Impl.Woman"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"name"</span> value=<span class="string">"marry"</span>&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"lover"</span> ref=<span class="string">"man"</span>&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-<p>测试类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class testIoc &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">test1</span></span>()&#123;</span><br><span class="line">        ApplicationContext  context= new ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        Man man =context.getBean(<span class="string">"man"</span>,Man.class);</span><br><span class="line">        Woman woman =context.getBean(<span class="string">"woman"</span>,Woman.class);</span><br><span class="line">        System.out.println(man);</span><br><span class="line">        System.out.println(woman);</span><br><span class="line">        man.love();</span><br><span class="line">        woman.love();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果<br><img src="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/1.PNG" alt><br>在这个例子里我们看到，从来没有使用过Men类和Women类来直接创建对象，他们之间也没有发生任何耦合，我们完全在用 “软编码.两个类之间已经实现了彼此间的连接。<br>控制反转（Inversion of Control）把创建对象的权利交给框架。被动接收的方式获取对象的思想就是控制反转，它是spring框架的核心之一，它包括依赖注入和依赖查找。<br>控制反转的作用：削减计算机程序的耦合（解除我们代码中的依赖关系）</p>
-<p>接下来我们就说一下依赖注入吧</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-关于5-26有感" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/"
-    >关于5.26有感</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/" class="article-date">
-  <time datetime="2020-05-27T03:13:26.000Z" itemprop="datePublished">2020-05-27</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>昨天搞了一天的hexo，在自己的台式能运行，在mac上一开始都还可以，到最后的部署hexo d 时一直出现git配置权限问题，但我是配置了公钥的，然后现在就现在mac上记载吧，到时拿去台式发布。<br><img src="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/1.PNG" alt="错误图片"><br>然后这是公钥的几个命令ssh -T <a href="mailto:git@github.com">git@github.com</a><br>git config –list<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“<br>然后有个问题hexo一直加载不出来照片，解决办法就是安装插件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<p>然后打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var cheerio = require(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in<span class="_">-a</span>-string</span><br><span class="line"><span class="keyword">function</span> getPosition(str, m, i) &#123;</span><br><span class="line">  <span class="built_in">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version = String(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="keyword">function</span>(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    	var link = data.permalink;</span><br><span class="line">	<span class="keyword">if</span>(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)</span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 1) + 1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 3) + 1;</span><br><span class="line">	// In hexo 3.1.1, the permalink of <span class="string">"about"</span> page is like <span class="string">".../about/index.html"</span>.</span><br><span class="line">	var endPos = link.lastIndexOf(<span class="string">'/'</span>) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		<span class="keyword">if</span> ($(this).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">			// For windows style path, we replace <span class="string">'\'</span> to <span class="string">'/'</span>.</span><br><span class="line">			var src = $(this).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">			<span class="keyword">if</span>(!/http[s]*.*|\/\/.*/.<span class="built_in">test</span>(src) &amp;&amp;</span><br><span class="line">			   !/^\s*\//.<span class="built_in">test</span>(src)) &#123;</span><br><span class="line">			  // For <span class="string">"about"</span> page, the first part of <span class="string">"src"</span> can<span class="string">'t be removed.</span></span><br><span class="line"><span class="string">			  // In addition, to support multi-level local directory.</span></span><br><span class="line"><span class="string">			  var linkArray = link.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  var srcArray = src.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">' &amp;&amp; elem != '</span>.<span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  if(srcArray.length &gt; 1)</span></span><br><span class="line"><span class="string">				srcArray.shift();</span></span><br><span class="line"><span class="string">			  src = srcArray.join('</span>/<span class="string">');</span></span><br><span class="line"><span class="string">			  $(this).attr('</span>src<span class="string">', config.root + link + src);</span></span><br><span class="line"><span class="string">			  console.info&amp;&amp;console.info("update link as:--&gt;"+config.root + link + src);</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;else&#123;</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info("no src attr, skipped...");</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info($(this));</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      data[key] = $.html();</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/26/hello-world/"
-    >Hello World</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/26/hello-world/" class="article-date">
-  <time datetime="2020-05-26T11:54:46.351Z" itemprop="datePublished">2020-05-26</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.png" alt></p>
+<p>子类重写的方法抛出的异常不大于父类被重写抛出的异常类型</p>
+<p>IDEA倒入module在struter中按加号倒入</p>
 
       
       <!-- reward -->
@@ -837,6 +905,11 @@
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>

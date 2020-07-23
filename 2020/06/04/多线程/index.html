@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">777</span>
+            <span class="post-count">1.4k</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -109,6 +109,27 @@
 <p>比较创建线程的两种方式<br>开发中优先选择Runnable接口的方法<br>1.实现的方式没有类的单继承的局限性<br>2.实现的方式更适合处理多个线程的共享数据</p>
 <p>Thread中常用的方法<br>1.start（）启动当前线程<br>2.run（）重写Thread类的方法，将创建的线程声明在此方法里<br>3.currentThread（）静态方法 返回执行当前代码的线程<br>4.getName（）获取当前线程的名字<br>5.setName（）设置当前线程的名字<br>6.yield（）释放当前cpu的执行权<br>7.join（）在线程a中调用线程b的join（），此时a线程就进入阻塞状态，直到线程b完全执行后，线程a才结束阻塞状态<br>8.stop（）已过时，停止当前线程<br>9.sleep（long millitime）让当前线程睡眠一段时间，在当前状态是阻塞状态<br>10.isAlive（）判断当前线程是否存活<br>11.getPriority()获取线程的优先级<br>12.setPriority()设置线程的优先级</p>
 <p><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.PNG" alt></p>
+<p>解决线程的安全问题两种解决办法<br>1.<br>同步代码块实现Runnable接口<br>synchronized(同步监视器){<br>    //需要被同步的代码<br>}<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.PNG" alt><br>同步代码块继承Thread类解决办法<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/3.PNG" alt><br>Window2.class也可以改成this<br>2.<br>同步方法实现Runnable接口<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/4.PNG" alt><br>同步方法继承Thread类解决办法<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/5.PNG" alt><br>大同小异，只是在方法前加了一个static<br>同步监视器 俗称锁 任何一个类的对象都可以充当锁<br>要求：多个线程必须共用同一把锁</p>
+<p>使用同步机制将懒汉式改成线程安全的<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/6.PNG" alt></p>
+<p>解决线程安全问题 Lock锁 jdl5.0新增<br>创建lock对象<br>private ReentrantLock lock = new ReentrantLock ();<br>try{}放方法体<br>finally放lock.unlock调用解锁方法</p>
+<p>线程通信的例子：使用两个线程打印1一100。线程1，线程2交替打印<br>涉及到的三个方法：<br>wait（）：一旦执行此方法，当前线程就进入阻塞状态，并释放同步监视器。<br>notify（）：一旦执行此方法，就会唤醒被wait的一一个线程。如果有多个线程被wait，就唤醒优先级高AnotifyALL（）：一旦执行此方法，就会唤醒所有被wait的线程。<br>说明：<br>1.wait（）， notify（）， notifyALl（）三个方法必须使用在同步代码块或同步方法中。<br>2. wait（）， notify（）， notifyAll（）三个方法的调用者必须是同步代码块或同步方法中的同步监视器否则，会出现ILLegaLMonitorStateException异常<br>3. wait（）， notify（）， notifyAlL（）三个方法是定义在java. lang. object类中。</p>
+<p>面试题<br>sleep()和wait()区别<br>相同点：一旦执行，都会是线程进入阻塞状态<br>不同点：一个是可控时间自动解除阻塞，一个是需要指定方法解除，并且wait还会释放锁，前者不会<br>        sleep在阻塞时间结束后自动唤醒 wait需要notify唤醒<br>        sleep()可以在任何需要的场景下调用，wait()必须使用在同步代码块或同步方法中使用</p>
+<p>创建线程方式三 实现Callable接口</p>
+<ol>
+<li>创建一个实现Callable的实现类</li>
+<li>实现call方法，将此线程需要执行的操作声明在call（）中</li>
+<li>创建Callable接口实现类的对象</li>
+<li>将Callable接口实现类的对象传递到FutureTask的构造器中，创建FutureTask的对象</li>
+<li>将FutureTask的对象传递到Thread类的构造器中，创建Thread对象，并调用start方法</li>
+</ol>
+<p>获取值方法，FutureTask对象有get方法。</p>
+<p>创建线程方式四 使用线程池</p>
+<p>使用线程池的好处</p>
+<ol>
+<li>调高效率，不用每次都要创建线程</li>
+<li>降低资源的消耗，重复利用线程池的线程</li>
+<li>便于线程管理</li>
+</ol>
 
       
       <!-- reward -->

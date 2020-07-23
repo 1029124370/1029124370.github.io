@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Hexo</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article id="post-多线程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+    >多线程</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="article-date">
+  <time datetime="2020-06-04T03:42:37.000Z" itemprop="datePublished">2020-06-04</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>先说说两个概念<br>并行(parallel)：指在同一时刻，有多条指令在多个处理器上同时执行。所以无论从微观还是从宏观来看，二者都是一起执行的。<br>并发(concurrency)：指在同一时刻只能有一条指令执行，但多个进程指令被快速的轮换执行，使得在宏观上具有多个进程同时执行的效果，但在微观上并不是同时执行的，只是把时间分成若干段，使多个进程快速交替的执行。<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B.PNG" alt><br>程序：一段静态代码<br>进程：是指一个内存中运行的应用程序<br>线程：是进程运行中的一个执行单元<br>多线程好处：效率高，每个线程互不影响</p>
+<p>线程的生命周期<br>➢新建：当一个Thread类或其 子类的对象被声明并创建时，新生的线程对象处于新建<br>状态<br>➢就绪：处于新建状态的线程被start（）后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源<br>➢运行：当就绪的线程被调度并获得CPU资源时，便进入运行状态，run（）方法定义了 线程的操作和功能<br>➢阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出CPU并临时中止自己的执行，进入阻塞状态<br>➢死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束</p>
+<p>线程调度<br>分时调度<br>所有线程轮流使用cpu的使用权，平均分配每个线程占用cpu的时间<br>抢占时调度<br>优先让优先级高的线程使用cpu，如果线程等级相同，就随机分配</p>
+<p>创建多线程方法<br>1.继承thread父类重写run方法，创建子类对象调用start<br>2.实现Runnable接口，重写run方法，实例化然后Thread t1 =new Thread(实例化的对象)； t1.start();</p>
+<p>比较创建线程的两种方式<br>开发中优先选择Runnable接口的方法<br>1.实现的方式没有类的单继承的局限性<br>2.实现的方式更适合处理多个线程的共享数据</p>
+<p>Thread中常用的方法<br>1.start（）启动当前线程<br>2.run（）重写Thread类的方法，将创建的线程声明在此方法里<br>3.currentThread（）静态方法 返回执行当前代码的线程<br>4.getName（）获取当前线程的名字<br>5.setName（）设置当前线程的名字<br>6.yield（）释放当前cpu的执行权<br>7.join（）在线程a中调用线程b的join（），此时a线程就进入阻塞状态，直到线程b完全执行后，线程a才结束阻塞状态<br>8.stop（）已过时，停止当前线程<br>9.sleep（long millitime）让当前线程睡眠一段时间，在当前状态是阻塞状态<br>10.isAlive（）判断当前线程是否存活<br>11.getPriority()获取线程的优先级<br>12.setPriority()设置线程的优先级</p>
+<p><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1.PNG" alt></p>
+<p>解决线程的安全问题两种解决办法<br>1.<br>同步代码块实现Runnable接口<br>synchronized(同步监视器){<br>    //需要被同步的代码<br>}<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2.PNG" alt><br>同步代码块继承Thread类解决办法<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/3.PNG" alt><br>Window2.class也可以改成this<br>2.<br>同步方法实现Runnable接口<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/4.PNG" alt><br>同步方法继承Thread类解决办法<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/5.PNG" alt><br>大同小异，只是在方法前加了一个static<br>同步监视器 俗称锁 任何一个类的对象都可以充当锁<br>要求：多个线程必须共用同一把锁</p>
+<p>使用同步机制将懒汉式改成线程安全的<br><img src="/2020/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/6.PNG" alt></p>
+<p>解决线程安全问题 Lock锁 jdl5.0新增<br>创建lock对象<br>private ReentrantLock lock = new ReentrantLock ();<br>try{}放方法体<br>finally放lock.unlock调用解锁方法</p>
+<p>线程通信的例子：使用两个线程打印1一100。线程1，线程2交替打印<br>涉及到的三个方法：<br>wait（）：一旦执行此方法，当前线程就进入阻塞状态，并释放同步监视器。<br>notify（）：一旦执行此方法，就会唤醒被wait的一一个线程。如果有多个线程被wait，就唤醒优先级高AnotifyALL（）：一旦执行此方法，就会唤醒所有被wait的线程。<br>说明：<br>1.wait（）， notify（）， notifyALl（）三个方法必须使用在同步代码块或同步方法中。<br>2. wait（）， notify（）， notifyAll（）三个方法的调用者必须是同步代码块或同步方法中的同步监视器否则，会出现ILLegaLMonitorStateException异常<br>3. wait（）， notify（）， notifyAlL（）三个方法是定义在java. lang. object类中。</p>
+<p>面试题<br>sleep()和wait()区别<br>相同点：一旦执行，都会是线程进入阻塞状态<br>不同点：一个是可控时间自动解除阻塞，一个是需要指定方法解除，并且wait还会释放锁，前者不会<br>        sleep在阻塞时间结束后自动唤醒 wait需要notify唤醒<br>        sleep()可以在任何需要的场景下调用，wait()必须使用在同步代码块或同步方法中使用</p>
+<p>创建线程方式三 实现Callable接口</p>
+<ol>
+<li>创建一个实现Callable的实现类</li>
+<li>实现call方法，将此线程需要执行的操作声明在call（）中</li>
+<li>创建Callable接口实现类的对象</li>
+<li>将Callable接口实现类的对象传递到FutureTask的构造器中，创建FutureTask的对象</li>
+<li>将FutureTask的对象传递到Thread类的构造器中，创建Thread对象，并调用start方法</li>
+</ol>
+<p>获取值方法，FutureTask对象有get方法。</p>
+<p>创建线程方式四 使用线程池</p>
+<p>使用线程池的好处</p>
+<ol>
+<li>调高效率，不用每次都要创建线程</li>
+<li>降低资源的消耗，重复利用线程池的线程</li>
+<li>便于线程管理</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-关于maven下载慢的问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"
+    >关于maven下载慢的问题</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-05-28T10:59:00.000Z" itemprop="datePublished">2020-05-28</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>今天用maven创建项目时，遇到一点问题就是下载速度过慢，然后换了一下阿里云的景象，主要操作如下<br>在maven的con下setting文件里添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line"></span><br><span class="line">&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line"></span><br><span class="line">&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">&lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">&lt;/mirror&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在idea的maven配置runner里加-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true到vm里</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-今天讲讲Springmvc那些事" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/"
+    >今天讲讲Spring那些事</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="article-date">
+  <time datetime="2020-05-27T05:07:55.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>今天老师在讲Springmvc的拦截器，想着以前mvc的配置那些忘得的七七八八，然后今天温故一下，顺便做个笔记。这篇就先温故一下SpringIOC吧<br>Springframwork 是java EE非常优秀的一个框架，核心是ioc（控制反转）和aop（面向切面编程），在Springframework中，认为一切java类都是资源，而这些资源都是bean，容纳这些bean都是spring所提供的ioc容器，所以Spring是基于bean的编程</p>
+<p>Spring有以下优点：<br>一低侵入式设计<br>一独立于各种应用服务器<br>一降低业务对象的复杂性，提高了组件间的解耦.允许通用任务进行集中式管理<br>一提供了与第三方框架的良好整合<br>开放度高，组合方便</p>
+<p>然后下面做了一个小案例，定义一个person借口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Person &#123;</span><br><span class="line">    void love();</span><br><span class="line">    String showNname();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义两个类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Man implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private Person lover;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person <span class="function"><span class="title">getLover</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setLover(Person lover) &#123;</span><br><span class="line">        this.lover = lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">love</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"he loves "</span>+ lover.showNname());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">showNname</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Woman implements Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private Person lover;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">getName</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person <span class="function"><span class="title">getLover</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setLover(Person lover) &#123;</span><br><span class="line">        this.lover = lover;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void <span class="function"><span class="title">love</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"she loves "</span>+ lover.showNname());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String <span class="function"><span class="title">showNname</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置bean的xml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">       xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">       xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"man"</span> class=<span class="string">"ozh.Impl.Man"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"name"</span> value=<span class="string">"jack"</span>&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"lover"</span> ref=<span class="string">"woman"</span>&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"woman"</span> class=<span class="string">"ozh.Impl.Woman"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"name"</span> value=<span class="string">"marry"</span>&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"lover"</span> ref=<span class="string">"man"</span>&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>测试类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class testIoc &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void <span class="function"><span class="title">test1</span></span>()&#123;</span><br><span class="line">        ApplicationContext  context= new ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        Man man =context.getBean(<span class="string">"man"</span>,Man.class);</span><br><span class="line">        Woman woman =context.getBean(<span class="string">"woman"</span>,Woman.class);</span><br><span class="line">        System.out.println(man);</span><br><span class="line">        System.out.println(woman);</span><br><span class="line">        man.love();</span><br><span class="line">        woman.love();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果<br><img src="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/1.PNG" alt><br>在这个例子里我们看到，从来没有使用过Men类和Women类来直接创建对象，他们之间也没有发生任何耦合，我们完全在用 “软编码.两个类之间已经实现了彼此间的连接。<br>控制反转（Inversion of Control）把创建对象的权利交给框架。被动接收的方式获取对象的思想就是控制反转，它是spring框架的核心之一，它包括依赖注入和依赖查找。<br>控制反转的作用：削减计算机程序的耦合（解除我们代码中的依赖关系）</p>
+<p>接下来我们就说一下依赖注入吧</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-关于5-26有感" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/"
+    >关于5.26有感</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/" class="article-date">
+  <time datetime="2020-05-27T03:13:26.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>昨天搞了一天的hexo，在自己的台式能运行，在mac上一开始都还可以，到最后的部署hexo d 时一直出现git配置权限问题，但我是配置了公钥的，然后现在就现在mac上记载吧，到时拿去台式发布。<br><img src="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/1.PNG" alt="错误图片"><br>然后这是公钥的几个命令ssh -T <a href="mailto:git@github.com">git@github.com</a><br>git config –list<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“<br>然后有个问题hexo一直加载不出来照片，解决办法就是安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>然后打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var cheerio = require(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in<span class="_">-a</span>-string</span><br><span class="line"><span class="keyword">function</span> getPosition(str, m, i) &#123;</span><br><span class="line">  <span class="built_in">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version = String(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="keyword">function</span>(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    	var link = data.permalink;</span><br><span class="line">	<span class="keyword">if</span>(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)</span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 1) + 1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 3) + 1;</span><br><span class="line">	// In hexo 3.1.1, the permalink of <span class="string">"about"</span> page is like <span class="string">".../about/index.html"</span>.</span><br><span class="line">	var endPos = link.lastIndexOf(<span class="string">'/'</span>) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		<span class="keyword">if</span> ($(this).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">			// For windows style path, we replace <span class="string">'\'</span> to <span class="string">'/'</span>.</span><br><span class="line">			var src = $(this).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">			<span class="keyword">if</span>(!/http[s]*.*|\/\/.*/.<span class="built_in">test</span>(src) &amp;&amp;</span><br><span class="line">			   !/^\s*\//.<span class="built_in">test</span>(src)) &#123;</span><br><span class="line">			  // For <span class="string">"about"</span> page, the first part of <span class="string">"src"</span> can<span class="string">'t be removed.</span></span><br><span class="line"><span class="string">			  // In addition, to support multi-level local directory.</span></span><br><span class="line"><span class="string">			  var linkArray = link.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  var srcArray = src.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">' &amp;&amp; elem != '</span>.<span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  if(srcArray.length &gt; 1)</span></span><br><span class="line"><span class="string">				srcArray.shift();</span></span><br><span class="line"><span class="string">			  src = srcArray.join('</span>/<span class="string">');</span></span><br><span class="line"><span class="string">			  $(this).attr('</span>src<span class="string">', config.root + link + src);</span></span><br><span class="line"><span class="string">			  console.info&amp;&amp;console.info("update link as:--&gt;"+config.root + link + src);</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;else&#123;</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info("no src attr, skipped...");</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info($(this));</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      data[key] = $.html();</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-hello-world" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/26/hello-world/"
+    >Hello World</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/26/hello-world/" class="article-date">
+  <time datetime="2020-05-26T11:54:46.351Z" itemprop="datePublished">2020-05-26</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> John Doe
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+</body>
+
+</html>
