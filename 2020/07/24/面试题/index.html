@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    idea快捷键 |  Hexo
+    面试题 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-idea快捷键" class="article article-type-post" itemscope
+  <article id="post-面试题" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  idea快捷键
+  面试题
 </h1>
  
 
@@ -59,8 +59,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-date">
-  <time datetime="2020-07-20T03:16:12.000Z" itemprop="datePublished">2020-07-20</time>
+      <a href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time datetime="2020-07-24T10:08:04.000Z" itemprop="datePublished">2020-07-24</time>
 </a>
       
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">9</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -102,7 +102,36 @@
       
 
       
-      <p>ctrl+alt+v 自动生成对象</p>
+      <ol>
+<li>聊聊list 和 set<br>集合分为 collection 和 map两个体系<br>collection下有list和set<br>list 是有序，可重复的集合<br>set 是无序，不可重复的集合<br>而这个list接口，分别有三个实现方法，分别是arraylist，linkedlist，vetor<br>arraylist底层使用数组结构，线程不安全<br>我的理解嗷，为什么不安全呢，是因为可能在多线程的时候一个线程会覆盖另一个线程的值，比如在多线程的时候，有a和b线程，a线程的值放进下标为0的数组，然后还没结束的时候b也在运行，然后b就覆盖了a的值，所以下标为0的位置保存了b的元素的值。<br>还有一种就是放元素的时候你a线程，就是说本来你数组长度只有10，a线程b线程同时进行，然后a已经到了第10个的位置，因为数组还没有扩容，所以会出现数组越界异常</li>
+</ol>
+<p>arraylist 扩容机制<br>就是它在构造的时候有一个有参构造和一个无参构造，无参构造就是创建一个长度为0的数组，<br>在有参构造里呢，创建的长度就是由参数决定的。接下来扩容的话，就是使用add方法，无参呢，就是增加数组长度到10，然后添加元素到数组里。然后它有一个ensure的方法，具体扩容就是原来的1.5倍</p>
+<p>linkedlist底层使用链表结构，对于插入，删除操作较多，建议使用，因为它有一个头节点还有一个尾节点，头节点就是存储上一个元素的位置，尾节点就是存储下个元素的位置，所以你要增加到a和b之间的话，a的尾部节点改变，b的头部节点改变，所以速度是比较快的。<br>vector是安全的，底层使用数组</p>
+<p>关于遍历的问题，使用迭代器，就是创建一个迭代器的对象，然后用hasnext的方法进行遍历</p>
+<ol start="2">
+<li>集合排序怎么实现（arraylist集合的排序）<br>排序的话，有两种吧，一种是自然排序，实现comparab接口，重写compareto方法；<br>一种是定制排序，需编写匿名内部类，</li>
+<li>集合遍历删除一个元素，怎么做到<br>先创建一个Iterator，然后调用hasnext方法，使用判断语句，判断相同就进行删除</li>
+<li>arraylist去重思路<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">removeDuplicate_1</span><span class="params">(ArrayList list)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;list.size()-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=list.size()-<span class="number">1</span>;j&gt;i;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(list.get(i).equals(list.get(j)))</span><br><span class="line">                    list.remove(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> list;        </span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">removeDuplicate_3</span><span class="params">(ArrayList list)</span></span>&#123;</span><br><span class="line">        ArrayList tempList = <span class="keyword">new</span> ArrayList(list.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!tempList.contains(list.get(i)))</span><br><span class="line">                tempList.add(list.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tempList;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>hashcode<br>首先把hashmap的kv保存在node对象里，这个k就会调用hashcode的方法就是获取hash值，然后通过哈希算法将hash值转换为数组下标嘛如果下表没有元素的话，就会把node元素添加进来，如果有的话就会把上一个取代掉</li>
+<li>jvm<br>jvm原理：Java源文件经过编译成字节码程序，通过jvm将每一条指令翻译成不同平台的机器码，通过特定平台运行。</li>
+</ol>
+<p>jvm执行过程<br>1加载.class文件<br>2管理并分配内存<br>3执行垃圾回收</p>
+<p>根类加载器<br>扩展类加载器<br>系统类加载器<br>自定义类加载器</p>
+<p>类的生命周期：加载 验证 准备 解析 初始化 使用 卸载</p>
+<p>加载（装载）<br>1.通过“类全名”来获取定义此类的二进制字节流</p>
+<p>2.将字节流所代表的静态存储结构转换为方法区的运行时数据结构</p>
+<p>3.在java堆中生成一个代表这个类的java.lang.Class对象，作为方法区这些数据的访问入口</p>
+<p>gc基本原理：将内存中不再使用的对象进行回收，gc中用于回收的方法叫做收集器。<br>jvm内存结构五大区域：程序计数器，虚拟机栈（java栈），本地方法栈，堆区-线程共享，方法区-线程共享。<br>其中，程序计数器，虚拟机栈，本地方法栈随着线程的创建而创建，随着线程的消亡而消亡。</p>
+<p>（运行时数据区）*程序计数器）<br>7. gc垃圾回收机制<br>8. 类的加载过程（类的加载器    ）加载 验证 准备 解析 初始化 使用 卸载<br>9. 序列化和反序列化<br>10. hashmap说一下你的理解吧<br>11. 关于匿名内部类</p>
+<ol start="12">
+<li><p>数据库 乐观锁 悲观锁<br>乐观锁：门锁着，先开门，不对再关门<br>悲观锁：有人进来必须要有钥匙<br>乐观锁 cas(compare and swap)</p>
+</li>
+<li><p>spring ioc bean的初始化</p>
+</li>
+<li><p>spring拦截器 handlerinterceptor prehandle posthandle aftercompletion</p>
+</li>
+<li></li>
+</ol>
 
       
       <!-- reward -->
@@ -171,7 +200,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -187,19 +216,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-nav-link">
+      <a href="/2020/07/27/jvm/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            面试题
+            jvm
           
         </div>
       </a>
     
     
-      <a href="/2020/07/17/ioc%E4%B8%8Eaop/" class="article-nav-link">
+      <a href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ioc与aop</div>
+        <div class="article-nav-title">idea快捷键</div>
       </a>
     
   </nav>

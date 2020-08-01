@@ -81,6 +81,355 @@
     
     
     
+    <article id="post-redis学习笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    >redis学习笔记</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-06-17T02:24:30.000Z" itemprop="datePublished">2020-06-17</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>开启redis redis-server<br>关闭 control+c</p>
+<p>JSR107<br>Java Caching定义了5个核心接口，分别是CachingProvider， CacheManager， Cache， EntryFД Expiry.<br>CachingProvider定义了创建、配置、获取、管理和控制多个CacheManager。一个应用可LiEYJ#iFE↑CachingProvider，<br>CacheManager定义了创建、配置、获取、管理和控制多个唯一命名的Cache， 这些CacheTFEFCacheManagerETX. 一↑CacheManagerfXix↑CachingProviderFF#FF5.Cache是一个类似Map的数据结构并临时存储以Key为索引 |的值。一个Cache仅被一个<br>CacheManagerFFJFF.<br>Entrye NFiåECachekey一valueXf.<br>Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期， 条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
+<p><img src="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png" alt></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-linux学习笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    >linux学习笔记</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-06-11T07:16:02.000Z" itemprop="datePublished">2020-06-11</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>首先要先装vmware 然后装centos运行起来，我装的是centos6<br>然后昨天看到的就是vmtools的安装，需要按安装压缩包，解压然后运行用终端运行并不断按确定，用了vmtools记得reboot重启</p>
+<p>linux结构目录<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.PNG" alt><br>xshell6链接linux服务器<br>linux开启sshd（终端输入setup，打开系统服务）新建会话，添加Linux服务器的IP地址，填写用户名密码<br>查看LinuxIP地址，打开终端输入ifconfig。</p>
+<p>linux的用户管理 用户家目录概念<br>增添用户 命令useradd xm 会在指定home目录下创建一个xm文件，登录进去后按pwd会显示在当前xm文件目录下<br>passwd xm 然后输入指定密码</p>
+<p>删除用户 userdel xm<br>删除用户+删除家目录 userdel -r xm<br>但除非特殊必要，一般来说不会删除家目录</p>
+<p>查询用户<br>id xm<br>在root状态下su xm切换到xm，按exit退出<br>查看当前用户 whoami<br>clear 清理当前终端</p>
+<p>增加组 groupadd group1<br>删除组 groupdel group1<br>增加用户直接加组 useradd -g 用户组 用户名<br>修改用户组 usermod -g 用户组 用户名</p>
+<p>配置文件<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.PNG" alt></p>
+<p>忘记root密码怎么办<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.PNG" alt></p>
+<p>linux运行级别<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.PNG" alt></p>
+<p>指令帮助<br>man help info<br>pwd显示当前的目录<br>ll查看文件列表<br>cd<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.PNG" alt></p>
+<p>绝对路径和相对路径<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.PNG" alt><br>cd ../../root 退两层找同级目录root</p>
+<p>mkdir 创建目录     mkdir -p 创建多级目录<br>rmdir删除空目录 如果空目录有内容那就无法删除<br>需要使用rm -rf删除<br>touch创建空文件</p>
+<p>cp 复制指令<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/13.PNG" alt><br>\cp强制覆盖不用提示</p>
+<p>rm删除指令 rm -rf删除目录<br>mv移动文件或重命名 </p>
+<p>cat浏览文件（只读） cat -n 显示行号<br>cat 文件名｜more是分页 空格下一页 ctrl+b上一页<br>less也是查看文字内容，但它并不是把文件加载之后才显示，相对于more查看大型文件更有效率</p>
+<blockquote>
+<p>指令和&gt;&gt;指令 指令显示的内容<br>覆盖 &gt;&gt;追加到文件的底部<br>echo”内容”&gt;或&gt;&gt;文件<br>echo $path输出环境变量<br>head显示开头文件内容 head -n 5 显示头五行<br>tail输出文件后几行 默认为10行<br>tail -f实时监控文档更新<br>ln指令 也叫软连接，相当于windows的快捷方式<br>history查看已执行过的历史命令</p>
+</blockquote>
+<p>date指令<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/14.PNG" alt><br>cal显示日历<br>还有find和local指令</p>
+<p>压缩 gzip 文件名 解压 gunzip 文件.gz<br>常用 压缩 zip 解压 unzip 目录压缩 zip -r<br>解压 tar -zxvf 文件名</p>
+<p>查看文件所有者 ls -ahl</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-反射" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/05/%E5%8F%8D%E5%B0%84/"
+    >反射</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/05/%E5%8F%8D%E5%B0%84/" class="article-date">
+  <time datetime="2020-06-05T03:58:53.000Z" itemprop="datePublished">2020-06-05</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>一、反射的概述 特点：动态性<br>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。<br>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.</p>
+<p>以上的总结就是什么是反射<br>反射就是把java类中的各种成分映射成一个个的Java对象<br>例如：一个类有：成员变量、方法、构造方法、包等等信息，利用反射技术可以对一个类进行解剖，把个个组成部分映射成一个个对象。<br>     （其实：一个类中这些成员方法、构造方法、在加入类中都有一个类来描述）<br>如图是类的正常加载过程：反射的原理在与class对象。<br>熟悉一下加载的时候：Class对象的由来是将class文件读入内存，并为之创建一个Class对象。</p>
+<p>·Java反射机制提供的功能<br>➢在运行时判断任意一个对象所属的类<br>➢在运行时构造任意一个类的对象<br>➢在运行时判断任意一个类所具有的成员变量和方法➢在运行时获取泛型信息<br>➢在运行时调用任意一个对象的成员变量和方法➢在运行时处理注解<br>➢生成动态代理</p>
+<p>考点<br>反射机制与封装性<br>通过new和反射调用，用哪个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void test3（） throws ClassNotFoundException 【</span><br><span class="line">//方式一： 调用运行时类的属性： .class</span><br><span class="line">Class clazz1 = Person.class；</span><br><span class="line">System. out . println（clazz1）；</span><br><span class="line">//方式二：通过运行时类的对象，调用getCLass（）</span><br><span class="line">Person p1 = new</span><br><span class="line">Pelson（）；</span><br><span class="line">Class c1azz2 = p1.getClass（）；</span><br><span class="line">System. out. println（clazz2）；</span><br><span class="line">1/方式三：凋用Class 的静杰方法： forName（String classPath）</span><br><span class="line">Class clazz3 = Class . forName （<span class="string">"com. atguigu. java.Person"</span>）；</span><br><span class="line">clazz3 = Class . forName（ <span class="string">"java. Lang. String"</span>）；</span><br><span class="line">System. out . println（clazz3）；</span><br><span class="line">System . out. println（clazz1 == c1azz2）；</span><br><span class="line">System. out. println（clazz1 == clazz3）；</span><br><span class="line">//方式四：使用类的加载器： ClassLoader</span><br><span class="line">ClassLoader classLoader = ReflectionTest. class. getClassLoader（ ）；</span><br><span class="line">Class clazz4 = classLoader . loadClass（ name： <span class="string">"com. atguigu. java . Person"</span>）；</span><br><span class="line">System. out . println（clazz4）；</span><br></pre></td></tr></table></figure>
+<p>复制路径 点击copy reference</p>
+<p>代理模式<br>静态代理：在编译期间代理类和被代理类都确定下来，不利于程序的拓展，每一个代理类只能为一个接口服务<br>动态代理：是指客户通过代理类来调用其他对象的方法，并且是在程序运行时根据需要动态创建目标类的代理对象<br>动态优点：接口声明的方法都被转移到调用处理器的一个集中方法处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">interface ClothFactoryf&#123;</span><br><span class="line">void produceCloth( );</span><br><span class="line">&#125;</span><br><span class="line">//代理类</span><br><span class="line">class ProxyClothFactory implements ClothFactoryf&#123;</span><br><span class="line">private ClothFactory factory;//用被代理类进行实例化</span><br><span class="line">public ProxyClothFactory(ClothFactory factory)&#123;</span><br><span class="line">this.factory = factory;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public void <span class="function"><span class="title">produceCloth</span></span>()&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//被代理类</span><br><span class="line">class NikeClothFactory implements ClothFactoryf&#123;</span><br><span class="line">@Override</span><br><span class="line">public void produceCloth（） &#123;</span><br><span class="line">System. out . println（<span class="string">"Nike生产一批运动服"</span>）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class StaticProxyTest &#123;</span><br><span class="line">public static void main（String【】 args） &#123;</span><br><span class="line">//创建被代理类的对象</span><br><span class="line">ClothFactory nike = new NikeClothFactory（）；</span><br><span class="line">//创建代理类的对象</span><br><span class="line">ClothFactory proxyClothFactory = new ProxyClothFactory（nike）；</span><br><span class="line">proxyClothFactory . produceCloth（）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public interface HelloInterface &#123;</span><br><span class="line">    void sayHello();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Hello implements HelloInterface&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class HelloProxy implements HelloInterface&#123;</span><br><span class="line">    private HelloInterface helloInterface = new Hello();</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke sayHello"</span> );</span><br><span class="line">        helloInterface.sayHello();</span><br><span class="line">        System.out.println(<span class="string">"After invoke sayHello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        HelloProxy helloProxy = new HelloProxy();</span><br><span class="line">        helloProxy.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">输出：</span><br><span class="line">Before invoke sayHello</span><br><span class="line">Hello zhanghao!</span><br><span class="line">After invoke sayHello</span><br></pre></td></tr></table></figure>
+
+<p>动态代理<br>被代理类 和接口不变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class ProxyHandler implements InvocationHandler&#123;</span><br><span class="line">    private Object object;</span><br><span class="line">    public ProxyHandler(Object object)&#123;</span><br><span class="line">        this.object = object;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke "</span>  + method.getName());</span><br><span class="line">        method.invoke(object, args);</span><br><span class="line">        System.out.println(<span class="string">"After invoke "</span> + method.getName());</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        </span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br></pre></td></tr></table></figure>
+<p>新来一个接口还有被代理类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public interface ByeInterface &#123;</span><br><span class="line">    void sayBye();</span><br><span class="line">&#125;</span><br><span class="line">public class Bye implements ByeInterface &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayBye</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Bye zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        ByeInterface <span class="built_in">bye</span> = new Bye();</span><br><span class="line"></span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line">        InvocationHandler handler1 = new ProxyHandler(<span class="built_in">bye</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        ByeInterface proxyBye = (ByeInterface) Proxy.newProxyInstance(bye.getClass().getClassLoader(), bye.getClass().getInterfaces(), handler1);</span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">        proxyBye.sayBye();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br><span class="line">    Before invoke sayBye</span><br><span class="line">    Bye zhanghao!</span><br><span class="line">    After invoke sayBye</span><br></pre></td></tr></table></figure>
+<p>动态代理底层实现</p>
+<p>动态代理具体步骤：</p>
+<ol>
+<li>通过实现 InvocationHandler 接口创建自己的调用处理器；</li>
+<li>通过为 Proxy 类指定 ClassLoader 对象和一组 interface 来创建动态代理类；</li>
+<li>通过反射机制获得动态代理类的构造函数，其唯一参数类型是调用处理器接口类型；</li>
+<li>通过构造函数创建动态代理类实例，构造时调用处理器对象作为参数被传入。<br>详情参考<br><a href="https://www.jianshu.com/p/9bcac608c714" target="_blank" rel="noopener">https://www.jianshu.com/p/9bcac608c714</a></li>
+</ol>
+<p>aop<br>通过预编译和运行期动态代理实现程序功能的一种技术</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-学习笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    >学习笔记</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-06-05T01:36:52.000Z" itemprop="datePublished">2020-06-05</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>1、ArrayList是基于索引的数据接口，它的底层是数组。它可以以O(1)时间复杂度对元素进行随机访问。与此对应，LinkedList是以元素列表的形式存储它的数据，每一个元素都和它的前一个和后一个元素链接在一起，在这种情况下，查找某个元素的时间复杂度是O(n)。<br>2、相对于ArrayList，LinkedList的插入，添加，删除操作速度更快，因为当元素被添加到集合任意位置的时候，不需要像数组那样重新计算大小或者是更新索引。<br>3、LinkedList比ArrayList更占内存，因为LinkedList为每一个节点存储了两个引用，一个指向前一个元素，一个指向下一个元素。<br>深入理解Java类实例化时jvm执行顺序<br>1.父类静态代码块：赋值b成功<br> 1.父类静态代码块：a的值1<br> 2.子类静态代码块：赋值sb成功<br> 2.子类静态代码块：sa的值1<br> 3.父类成员变量赋值：—&gt; c的值0<br> 3.父类成员变量赋值：—&gt; c的值12<br> 4.父类构造方式开始执行—&gt; a:1,b:1<br> 4.父类构造方式开始执行—&gt; c:12<br> 5.子类成员变量赋值—&gt;：sc的值0<br> 6.子类构造方式开始执行—&gt; sa:1,sb:1<br> 6.子类构造方式开始执行—&gt; sc:12<br>当我们进行new实例化进行操作的时候，JVM都进行了什么操作呢？<br>如果你看过深入理解jvm的话，应该会比较清楚，当我们使用new关键字进行实例化的时候，会进行如下几步处理：</p>
+<p>加载<br>此阶段加载类的字节码信息到内存<br>连接<br>此阶段进行验证，分配默认值，符号引用转直接引用<br>初始化<br>为成员进行赋值等</p>
+<p>使用<br>对实例进行操作比如sons.toString()</p>
+<p>对于我们的实例而言，我们只关注连接和初始化阶段即可。<br>连接阶段我们按照类结构(成员变量（先），方法(后)等)的顺序(不是书写顺序)，先对变量进行赋默认值0，对象的话为null。</p>
+<p>初始化的时候，就是对对象进行赋值，比如c执行initc()进行赋值。</p>
+<p>HASH</p>
+<p>1) HashMap：它根据键的hashCode值存储数据，大多数情况下可以直接定位到它的值，因而具有很快的访问速度，但遍历顺序却是不确定的。 HashMap最多只允许一条记录的键为null，允许多条记录的值为null。HashMap非线程安全，即任一时刻可以有多个线程同时写HashMap，可能会导致数据的不一致。如果需要满足线程安全，可以用 Collections的synchronizedMap方法使HashMap具有线程安全的能力，或者使用ConcurrentHashMap。</p>
+<p>(2) Hashtable：Hashtable是遗留类，很多映射的常用功能与HashMap类似，不同的是它承自Dictionary类，并且是线程安全的，任一时间只有一个线程能写Hashtable，并发性不如ConcurrentHashMap，因为ConcurrentHashMap引入了分段锁。Hashtable不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。</p>
+<p>(3) LinkedHashMap：LinkedHashMap是HashMap的一个子类，保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的，也可以在构造时带参数，按照访问次序排序。</p>
+<p>(4) TreeMap：TreeMap实现SortedMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。如果使用排序的映射，建议使用TreeMap。在使用TreeMap时，key必须实现Comparable接口或者在构造TreeMap传入自定义的Comparator，否则会在运行时抛出java.lang.ClassCastException类型的异常。</p>
+<p>从结构实现来讲，HashMap是数组+链表+红黑树</p>
+<p>栈是一种特殊的线性表，仅能在线性表的一端操作，栈顶允许操作，栈底不允许操作。 栈的特点是：先进后出，或者说是后进先出，从栈顶放入元素的操作叫入栈，取出元素叫出栈。</p>
+<p>队列与栈一样，也是一种线性表，不同的是，队列可以在一端添加元素，在另一端取出元素，也就是：先进先出。从一端放入元素的操作称为入队，取出元素为出队</p>
+<p>数组是可以再内存中连续存储多个元素的结构，在内存中的分配也是连续的，数组中的元素通过数组下标进行访问，数组下标从0开始。例如下面这段代码就是将数组的第一个元素赋值为 1。</p>
+<p>int[] data = new int[100]；data[0]  = 1;</p>
+<p>优点：<br>1、按照索引查询元素速度快<br>2、按照索引遍历数组方便</p>
+<p>缺点：<br>1、数组的大小固定后就无法扩容了<br>2、数组只能存储一种类型的数据<br>3、添加，删除的操作慢，因为要移动其他的元素。</p>
+<p>适用场景：<br>频繁查询，对存储空间要求不大，很少增加和删除的情况。</p>
+<p>ArrayList<br>底层数据结构是数组。线程不安全<br>LinkedList<br>底层数据结构是链表。线程不安全<br>Vector<br>底层数据结构是数组。线程安全</p>
+<p>map不能映射重复的键，一个键只能对应一个值</p>
+<p>抽象类与接口<br>抽象类要被子类继承，接口要被类实现。<br>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。<br>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。<br>抽象类可以有构造方法，接口中不能有构造方法。<br>抽象类中可以有普通成员变量，接口中没有普通成员变量<br>一个类可以实现多个接口，但只能继承一个抽象类</p>
+<p>JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。<br>JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。<br>具体来说 JDK 其实包含了 JRE，同时还包含了编译 java 源码的编译器 javac，还包含了很多 java 程序调试和分析的工具。简单来说：如果你需要运行 java 程序，只需安装 JRE 就可以了，如果你需要编写 java 程序，需要安装 JDK。</p>
+<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.PNG" alt></p>
+<p>强制类型转换<br>容量小的数据类型变量和容量大的数据类型变量做运算时，结果自动提升为容量大的数据类型</p>
+<p>三元运算符 int max = (m&gt;n)?m:n</p>
+<p>封装就是把普通的对象进行封装，对象的属性设为私有的，对外提供get和set方法，其他类只能通过get和set对对象属性值进行操作。继承是发生在两个类之间，一个类继承另一个类是说这个类属于另一个类，具有另一个类的所有属性和方法，同时它还可以有另一个类不具备的方法和属性。多态是建立在继承的基础上的，一个父类对象可以产生多个不同的子类对象，根据这些子类对象的不同可以具备不同的方法，也就是说表现出了不同的形态即多态</p>
+<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.PNG" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.jpeg" alt></p>
+<p>多态性<br>父类的引用指向子类的对象<br>Person p =new man();<br>当父类有了对象的多态性以后，在编译时只调用父类申明的方法，但运行时我们执行的是子类重写父类的方法。<br>编译看左边，运行看右边<br>值得一提是，不能调用类特有的方法和属性</p>
+<p>x instanceof a 检验x子类是否为父类a的对象</p>
+<p>自动装箱与自动拆箱<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png" alt><br>基本数据类型与包装类转换成string类型<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png" alt><br>sting类型转int型<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.png" alt><br>static 静态变量主要就是创建两个person对象然后他们共享共同的static属性<br>我们创建了类的多个对象，多个对象共享同一个静态变量。当通过某一对象修改静态变量时，会导致其他对象调用此变量时是修改过的。<br>1.静态变量随着类的加载而加载<br>2.静态变量的加载要早于对象的创建。<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.png" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.png" alt></p>
+<p>栈：局部变量 堆：创建出来的结构：对象和数组<br>方法区：类的加载信息，静态域，常量池</p>
+<p>单例设计模式<br>保证在软件系统中，一个类只能有一个对象实例<br>饿汉模式步骤：<br>私有化类的构造器<br>内部创建类的对象（要求此对象也要声明为静态的）<br>提供公共方法，返回类的对象<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.png" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.png" alt></p>
+<p>代码块<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.png" alt></p>
+<p>抽象类<br>抽象类是不能实例化的<br>继承抽象类就要实现它所有的方法</p>
+<p>代理模式<br>代理模式就是为其他对象提供一种代理以控制对这个对象的访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="built_in">test</span>&#123;</span><br><span class="line"><span class="function"><span class="title">psvm</span></span>()&#123;</span><br><span class="line">	server server =new server();</span><br><span class="line">	proxy p= new proxy(server);</span><br><span class="line">	p.browse();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface network&#123;</span><br><span class="line">	public void browse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class server implements network&#123;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		sout<span class="string">"aaa"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class proxy implements network&#123;</span><br><span class="line">	private network n;</span><br><span class="line">	public proxy(network n)&#123;</span><br><span class="line">		this.n = n;</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">check</span></span> ()&#123;</span><br><span class="line">		sout<span class="string">"检查"</span></span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		check();</span><br><span class="line">		work.browse;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>工厂模式<br>实现了创建者与调用者的分离，即将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。</p>
+<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.png" alt></p>
+<p>子类重写的方法抛出的异常不大于父类被重写抛出的异常类型</p>
+<p>IDEA倒入module在struter中按加号倒入</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-多线程" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 

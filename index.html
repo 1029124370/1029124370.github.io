@@ -81,6 +81,455 @@
     
     
     
+    <article id="spring-security" class="article article-type-spring" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/31/security/"
+    >security</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/31/security/" class="article-date">
+  <time datetime="2020-07-31T04:45:17.000Z" itemprop="datePublished">2020-07-31</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>认识SpringSecurity</p>
+<p>Spring Security 是针对Spring项目的安全框架，也是Spring Boot底层安全模块默认的技术选型，他可以实现强大的Web安全控制，对于安全控制，我们仅需要引入 spring-boot-starter-security 模块，进行少量的配置，即可实现强大的安全管理！<br>记住几个类：</p>
+<p>WebSecurityConfigurerAdapter：自定义Security策略</p>
+<p>AuthenticationManagerBuilder：自定义认证策略</p>
+<p>@EnableWebSecurity：开启WebSecurity模式</p>
+<p>Spring Security的两个主要目标是 “认证” 和 “授权”（访问控制）。</p>
+<p>“认证”（Authentication）</p>
+<p>身份验证是关于验证您的凭据，如用户名/用户ID和密码，以验证您的身份。</p>
+<p>身份验证通常通过用户名和密码完成，有时与身份验证因素结合使用。</p>
+<p> “授权” （Authorization）</p>
+<p>授权发生在系统成功验证您的身份后，最终会授予您访问资源（如信息，文件，数据库，资金，位置，几乎任何内容）的完全权限。</p>
+<p>这个概念是通用的，而不是只在Spring Security 中存在。</p>
+<ol>
+<li><p>导入依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写sprinng security配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableWebSecurity</span> <span class="comment">// 开启WebSecurity模式</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 定制请求的授权规则</span></span><br><span class="line">   <span class="comment">// 首页所有人可以访问</span></span><br><span class="line">   http.authorizeRequests().antMatchers(<span class="string">"/"</span>).permitAll()</span><br><span class="line">  .antMatchers(<span class="string">"/level1/**"</span>).hasRole(<span class="string">"vip1"</span>)</span><br><span class="line">  .antMatchers(<span class="string">"/level2/**"</span>).hasRole(<span class="string">"vip2"</span>)</span><br><span class="line">  .antMatchers(<span class="string">"/level3/**"</span>).hasRole(<span class="string">"vip3"</span>);</span><br><span class="line">  	<span class="comment">// 开启自动配置的登录功能</span></span><br><span class="line">	<span class="comment">// /login 请求来到登录页</span></span><br><span class="line">	<span class="comment">// /login?error 重定向到这里表示登录失败</span></span><br><span class="line">	http.formLogin();<span class="comment">//进入失败返回登陆界面</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//定义认证规则</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//在内存中定义，也可以在jdbc中去拿....</span></span><br><span class="line">   <span class="comment">//Spring security 5.0中新增了多种加密方式，也改变了密码的格式。</span></span><br><span class="line">   <span class="comment">//要想我们的项目还能够正常登陆，需要修改一下configure中的代码。我们要将前端传过来的密码进行某种方式加密</span></span><br><span class="line">   <span class="comment">//spring security 官方推荐的是使用bcrypt加密方式。</span></span><br><span class="line">   </span><br><span class="line">   auth.inMemoryAuthentication().passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">          .withUser(<span class="string">"kuangshen"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip2"</span>,<span class="string">"vip3"</span>)</span><br><span class="line">          .and()</span><br><span class="line">          .withUser(<span class="string">"root"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>,<span class="string">"vip3"</span>)</span><br><span class="line">          .and()</span><br><span class="line">          .withUser(<span class="string">"guest"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>);</span><br><span class="line">          .withUser(<span class="string">"guest"</span>).password(<span class="string">"123456"</span>).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-mysql" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/29/mysql/"
+    >mysql</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/29/mysql/" class="article-date">
+  <time datetime="2020-07-29T02:54:46.000Z" itemprop="datePublished">2020-07-29</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>spring:<br>  datasource:<br>    username: root<br>    password: ozh12580.<br>    url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC<br>    driver-class-name: com.mysql.cj.jdbc.Driver<br>  thymeleaf:<br>    cache: false</p>
+<p>mysql 常用命令行<br>show databases<br>use test 进入数据库<br>show tables<br>select * from user<br>show tables from 其他库<br>desc 表名</p>
+<p><a href="https://blog.csdn.net/sinat_35861727/article/details/78866904" target="_blank" rel="noopener">https://blog.csdn.net/sinat_35861727/article/details/78866904</a><br>选择：select * from table1 where 范围<br>插入：insert into table1(field1,field2) values(value1,value2)<br>删除：delete from table1 where 范围<br>更新：update table1 set field1=value1 where 范围<br>查找：select * from table1 where field1 like ’%value1%’ —like的语法很精妙，查资料!<br>排序：select * from table1 order by field1,field2 [desc]<br>总数：select count as totalcount from table1<br>求和：select sum(field1) as sumvalue from table1<br>平均：select avg(field1) as avgvalue from table1<br>最大：select max(field1) as maxvalue from table1<br>最小：select min(field1) as minvalue from table1</p>
+<p>添加外键约束<br>– CONSTRAINT 就是创建外键约束 fk_id是外键约束的名字<br>– foreign key (dept_id) references dept(did)意思是设置person表中的dept_id字段和dept表中的did字段关联，dept表中的did字段就是person表中的dept_id的外键约束，这个外键约束的名字叫做fk_id，一般潜规则外键约束的名字开头是fk_<br>alter table person add CONSTRAINT fk_id foreign key (dept_id) REFERENCES dept(did);</p>
+<p>多表关系介绍<br>一对多 在多的一方建立外键，指向一方的主键<br>多对多 建立第三张中间表<br>一对一 可以让任一方建立唯一外键</p>
+<p>*分类：<br>。第一范式（1NF） 每一列都是不可少剂的原子数据项<br>2.第二范式（2NF） ： 在1NF的基础上，非码性必须完全依赖于码（在1NF基础上消除非主的性对主码的部分函数依赖）<br>几个概念：<br>1.函数依赖： A一》B，如果通过Al：性（I：s性组）的值，可以确定唯一Bho性的值。 则称B依赖于A<br>例如：学号一》姓名。（学号， 课程名称）一》分数<br>2.完全函数依赖： A一》B，如果A是一 个的性组， 则B】}性值行确定出要依赖于A：性组中所有的的性值。<br>例如： （学号，课程名称） 一》 分数<br>3.部分函数依赖： A一》B，如果A是 一个小性组，则B）；性值行确定只就要依赖于Al；后性组中某一些值即可。<br>例如： （学号，课程名称） 一 》姓名<br>4.传递函数依赖： A一》B， B 一 》C .如果通过A：性（：性组）的值，可以确定唯一 Bl：性的值，在通过B）性（：性组）的值可以确定唯一C的性的值，则称C传递函数依赖于A<br>例如：学号一》系名，系名一》系主任<br>5.码：如果在一 张表中，一个：性或时性组，被其他所有小性所完全依赖，则称这个煽性（小性组）为该表的码<br>例如：该表中码为： （学号， 课程名称）<br>*主席性：码成性组中的所有属性<br>*非主屈性：除过码属性组的屈性<br>3.笫三范式（3NF） ： 在2NF基础上，任何非主的性不依赖于其它非主的性（在2NF 基础上消除传递依赖）<br><img src="/2020/07/29/mysql/1.PNG" alt><br><img src="/2020/07/29/mysql/2.PNG" alt></p>
+<p>多表查询<br>*多表查询的分类：<br>1.内连接查询：<br>1.隐式内连接：使用where条件消除无用数据<br>*列子：<br>一 查询所有员工信息和对应的部门信息<br>SELECT * FROM emp，dept WHERE emp. dept_ <em>id^ = dept.” id^ ；<br>一查询员工表的名称，性别。部门门表的名称<br>SELECT emp . name ， emp. gender ， dept. name FROM emp ，dept WHERE emp.~ dept</em> <em>id^ = dept.~ id^ ；SELECT<br>t1.name，一员工表的姓名<br>t1.gender，一员工表的性别<br>t2.name 一部门表的名称<br>FROM<br>emp t1，<br>dept t2<br>WHERE<br>t1. dept</em> _id^ = t2. id ；</p>
+<p>2.外链接查询：<br>1.左外连接：<br><em>语法： select 字段列表from表1 left 【outer】 join表2 on条件；<br>*查询的是左表所有数据以及其交集部分。<br>*例子：<br>一查询所有员工信息，如果员工有部门，则查询部门】名称，没有部门，则不显示部门名称<br>SELECT t1.</em>，t2. name^ FROM emp t1 LEFT JOIN dept t2 ON t1.~ dept_ id^ = t2.~ id~ ；<br>2.右外连接：<br>*语法： select字段列表from表1 right 【outer】 join 表2 on条件；<br>*查询的是右表所有数据以及其交集部分。<br>*例子：<br>SELECT FROM dept t2 RIGHT JOIN emp t1 ON t1. dept_ _id^ = t2.” id ；</p>
+<p>*子查询不同情况<br>1.子查询的结果是单行单列的：<br>*子查询可以作为条件，使用运算符去判断。 运算符： 》 》= 《 《= =<br>一查询员工工资小于平均工资的人<br>SELECT * FROM emp WHERE emp.salary 《 （SELECT AVG（salary） FROM emp）；<br>2.子查询的结果是多行单列的：<br>*子查询可以作为条件，使用运算符i n来判断<br>一查询’财务部’和’市场部’所有的员工信息<br>SELECT id FROM dept WHERE NAME = ‘ 财务部’OR NAME = ‘ 市场部’；<br>SELECT * FROM emp WHERE dept_ id = 3 OR dept_ <em>id = 2；<br>一子查询<br>SELECT * FROM emp WHERE dept</em> id IN （SELECT id FROM dept WHERE NAME = ‘ 财务部’OR NAME = ‘ 市场部’）；3.子查询的结果是多行多列的：<br>*子查询可以作为一张虚拟表参与查询<br>一 查询员工入职日期是2011一11一 11日之后的员工信息和部门信息<br>一子查询<br>SELECT * FROM dept t1 ，（SELECT * FROM emp WHERE emp.~ join_ <em>date^ 》‘ 2011一11一11’） t2<br>WHERE t1.id = t2.dept</em> id；<br>一普通内连接<br>SELECT * FROM emp t1，dept t2 WHERE t1.~ dept_ id^ = t2.” id^ AND t1. join_ date~ 》‘ 2011一11一11’</p>
+<p>原子性（Atomicity）</p>
+<p>事务就像“原子”一样，不可被分割，组成事务的DML操作语句要么全成功，要么全失败，不可能出现部分成功部分失败的情况。</p>
+<p>一致性（Consistency）</p>
+<p>一旦事务完成，不管是成功的，还是失败的，整个系统处于数据一致的状态。</p>
+<p>隔离性（Isolation）</p>
+<p>一个事务的执行不会被另一个事务所干扰。比如两个人同时从一个账户从取钱，通过事务的隔离性确保账户余额的正确性。</p>
+<p>持久性（Durability）</p>
+<p>也称为永久性，指事务一旦提交，对数据的改变就是永久的，不可以再被回滚。</p>
+<p>MySQL的事务处理主要有两种方法<br>1.用begin,rollback,commit来实现<br>    begin开始一个事务<br>    rollback事务回滚<br>    commit 事务提交<br>2.直接用set来改变MySQL的自动提交模式<br>    MySQL默认是自动提交的，也就是你提交一个sql，就直接执行！可以通过<br>    set autocommit = 0 禁止自动提交<br>    set autocommit = 1 开启自动提交<br>    来实现事务的处理。</p>
+<p>但要注意当用set autocommit = 0 的时候，以后所有的sql都将作为事务处理，直到用commit确认或 rollback结束，注意当结束这个事务的同时也开启了新的事务！按第一种方法只将当前的做为一个事务!<br>查看事物的默认提交方式：select@@autocommit 1代表自动提交 0代表手动提交</p>
+<ol start="4">
+<li>MySQL数据库中事务默认自动提交</li>
+</ol>
+<p>*事务提交的两种方式：<br>*自动提交：<br>mysql就是自动提交的<br>*一条DML（增删改）语句会自动提交一次事务。<br>*手动提交：|</p>
+<ul>
+<li>oracle数据库默认是手动提交事务<br>需要先开启事务，再提交</li>
+<li>修改事务的默认提交方式：</li>
+<li>查看事务的默认提交方式： SELECT @@autocommit； 一 1代表自动提交 0代表手动提交*修改默认提交方式： set @@autocommit = 0；<br>start transaction 开启事物</li>
+</ul>
+<p>3.事务的隔离级别（了解）<br><em>概念：多个事务之间隔离的，相互独立的。但是如果多个事务操作同一批数据，则会引发一些问题，设置不同的隔离级别就可以解决这些</em>存在问题：<br>1.脏读：一个事务，读取到另一个事务中没有提交的数据<br>2.不可重复读（虚读） ：在同一个事务中，两次读取到的数据不一样。<br>3.幻读：一个事务操作（DML ）数据表中所有记录，另一个事务添加了一条数据，则第一 个事务查询不到自己的修改。<br>*隔离级别：</p>
+<ol>
+<li>read uncommitted ：读未提交</li>
+</ol>
+<p>*产生的问题：脏读、不可重复读、幻读<br>2. read committed ：读已提交 （Oracle）<br>*产生的问题：不可重复读、幻读<br>3. repeatable read ：可重复读（MySQL 默认）<br>产生的问题：幻读<br>4. serializable ：串行化<br>可以解决所有的问题<br>*注意：隔离级别从小到大安全性越来越高，但是效率越来越低<br>*数据库查询隔离级别：</p>
+<ul>
+<li>select @@tx_ isolation；</li>
+<li>数据库设置隔离级别：<br>set global transaction isolation level级别字符串 ；| </li>
+</ul>
+<p>什么样的字段适合创建索引，<br>索引是建立在数据库表中的某些列的上面。因此，在创建索引的时候，应该仔细考虑在哪些列上可以创建索引，在哪些列上不能创建索引。<br>一般来说，应该在这些列上创建索引，例如：<br>第一、在经常需要搜索的列上，可以加快搜索的速度；<br>第二、在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构；<br>第三、在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度；<br>第四、在经常需要根据范围进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的；<br>第五、在经常需要排序的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间；<br>第六、在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。</p>
+<p>下面这些不适合索引<br>第一，对于那些在查询中很少使用或者参考的列不应该创建索引。这是因为，既然这些列很少使用到，因此有索引或者无索引，<br>并不能提高查询速度。相反，由于增加了索引，反而降低了系统的维护速度和增大了空间需求。<br>第二，对于那些只有很少数据值的列也不应该增加索引。这是因为，由于这些列的取值很少，例如人事表的性别列，<br>在查询的结果中，结果集的数据行占了表中数据行的很大比例，即需要在表中搜索的数据行的比例很大。增加索引，并不能明显加快检索速度。<br>第三，对于那些定义为text， image 和bit数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少。<br>第四，当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。<br>四. 索引类型<br>MySQL目前主要有以下几种索引类型：</p>
+<p>普通索引</p>
+<p>唯一索引</p>
+<p>主键索引</p>
+<p>组合索引</p>
+<p>全文索引</p>
+<p>普通索引</p>
+<p>这是最基本的索引，它没有任何限制。它有以下几种创建方式：</p>
+<p>（1）直接创建索引</p>
+<p>CREATE INDEX index_name ON table(column(length))<br>（2）修改表结构的方式添加索引</p>
+<p>ALTER TABLE table_name ADD INDEX index_name ON (column(length))<br>（3）创建表的时候同时创建索引</p>
+<p>CREATE TABLE <code>table</code> (<br>    <code>id</code> int(11) NOT NULL AUTO_INCREMENT ,<br>    <code>title</code> char(255) CHARACTER NOT NULL ,<br>    <code>content</code> text CHARACTER NULL ,<br>    <code>time</code> int(10) NULL DEFAULT NULL ,<br>    PRIMARY KEY (<code>id</code>),<br>    INDEX index_name (title(length))<br>)<br>唯一索引</p>
+<p>与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：</p>
+<p>（1）创建唯一索引</p>
+<p>CREATE UNIQUE INDEX indexName ON table(column(length))<br>（2）修改表结构</p>
+<p>ALTER TABLE table_name ADD UNIQUE indexName ON (column(length))<br>（3）创建表的时候直接指定</p>
+<p>CREATE TABLE <code>table</code> (<br>    <code>id</code> int(11) NOT NULL AUTO_INCREMENT ,<br>    <code>title</code> char(255) CHARACTER NOT NULL ,<br>    <code>content</code> text CHARACTER NULL ,<br>    <code>time</code> int(10) NULL DEFAULT NULL ,<br>    UNIQUE indexName (title(length))<br>);<br>主键索引</p>
+<p>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引：</p>
+<p>CREATE TABLE <code>table</code> (<br>    <code>id</code> int(11) NOT NULL AUTO_INCREMENT ,<br>    <code>title</code> char(255) NOT NULL ,<br>    PRIMARY KEY (<code>id</code>)<br>);<br>组合索引</p>
+<p>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合</p>
+<p>ALTER TABLE <code>table</code> ADD INDEX name_city_age (name,city,age);<br>全文索引</p>
+<p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text 列上可以创建全文索引。值得一提的是，在数据量较大时候，现将数据放入一个没有全局索引的表中，然后再用CREATE index创建fulltext索引，要比先为一张表建立fulltext然后再将数据写入的速度快很多。</p>
+<p>CREATE TABLE <code>table</code> (<br>    <code>id</code> int(11) NOT NULL AUTO_INCREMENT ,<br>    <code>title</code> char(255) CHARACTER NOT NULL ,<br>    <code>content</code> text CHARACTER NULL ,<br>    <code>time</code> int(10) NULL DEFAULT NULL ,<br>    PRIMARY KEY (<code>id</code>),<br>    FULLTEXT (content)<br>);</p>
+<p> <a href="https://www.cnblogs.com/nov5026/p/11210078.html" target="_blank" rel="noopener">https://www.cnblogs.com/nov5026/p/11210078.html</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-jvm" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/27/jvm/"
+    >jvm</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/27/jvm/" class="article-date">
+  <time datetime="2020-07-27T07:40:47.000Z" itemprop="datePublished">2020-07-27</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>vm原理：Java源文件经过编译成字节码程序，通过jvm将每一条指令翻译成不同平台的机器码，通过特定平台运行。</p>
+<p>jvm执行过程<br>1加载.class文件<br>2管理并分配内存<br>3执行垃圾回收</p>
+<p>根类加载器（引导类加载器）<br>扩展类加载器<br>系统类加载器<br>自定义类加载器</p>
+<p>类的生命周期：加载 链接（验证 准备 解析） 初始化 使用 卸载</p>
+<p>一.加载（装载）<br>1.通过“类全名”来获取定义此类的二进制字节流</p>
+<p>2.将字节流所代表的静态存储结构转换为方法区的运行时数据结构</p>
+<p>3.在java堆中生成一个代表这个类的java.lang.Class对象，作为方法区这些数据的访问入口</p>
+<p>二.验证：（了解）<br>验证是链接阶段的第一步，这一步主要的目的是确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身安全。<br>验证阶段主要包括四个检验过程：文件格式验证、元数据验证、字节码验证和符号引用验证。</p>
+<p>三.准备：（了解）<br>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，这些内存都将在方法区中进行分配。这个阶段中有两个容易产生混淆的知识点，首先是这时候进行内存分配的仅包括类变量(static 修饰的变量),而不包括实例变量，实例变量将会在对象实例化时随着对象一起分配在java堆中。其次是这里所说的初始值“通常情况”下是数据类型的零值，假设一个类变量定义为:</p>
+<p>public static int value  = 12;</p>
+<p>那么变量value在准备阶段过后的初始值为0而不是12，因为这时候尚未开始执行任何java方法，而把value赋值为123的putstatic指令是程序被编译后，存放于类构造器<clinit>()方法之中，所以把value赋值为12的动作将在初始化阶段才会被执行。</clinit></p>
+<p>上面所说的“通常情况”下初始值是零值，那相对于一些特殊的情况，如果类字段的字段属性表中存在ConstantValue属性，那在准备阶段变量value就会被初始化为ConstantValue属性所指定的值，建设上面类变量value定义为：</p>
+<p>public static final int value = 123;</p>
+<p>编译时javac将会为value生成ConstantValue属性，在准备阶段虚拟机就会根据ConstantValue的设置将value设置为123。</p>
+<p>四.解析：（了解）<br>解析阶段是虚拟机常量池内的符号引用替换为直接引用的过程。<br>符号引用：符号引用是一组符号来描述所引用的目标对象，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可。符号引用与虚拟机实现的内存布局无关，引用的目标对象并不一定已经加载到内存中。</p>
+<p>直接引用：直接引用可以是直接指向目标对象的指针、相对偏移量或是一个能间接定位到目标的句柄。直接引用是与虚拟机内存布局实现相关的，同一个符号引用在不同虚拟机实例上翻译出来的直接引用一般不会相同，如果有了直接引用，那引用的目标必定已经在内存中存在。</p>
+<p>解析的动作主要针对类或接口、字段、类方法、接口方法四类符号引用进行。分别对应编译后常量池内的CONSTANT_Class_Info、CONSTANT_Fieldref_Info、CONSTANT_Methodef_Info、CONSTANT_InterfaceMethoder_Info四种常量类型。</p>
+<p>五.初始化：（了解）<br>类加载最后阶段，若该类具有超类，则对其进行初始化，执行静态初始化器和静态初始化成员变量(如前面只初始化了默认值的static变量将会在这个阶段赋值，成员变量也将被初始化)。</p>
+<p>初始化阶段就是执行类构造器方法《clinit》 （）的过程。<br>此方法不需定义，是javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。<br>构造器方法中指令按语句在源文件中出现的顺序执行。<br>·《clinit》（）不同于类的构造器。 （关联：构造器是虚拟机视角下的《init》（））<br>若该类具有父类，JVM会 保证子类的《clinit》（）执行前，父类的《clinit》（）已经执行完毕。<br>虚拟机必须保证一个类的《clinit》 （）方法在多线程下被同步加锁。</p>
+<p>类加载器的任务是根据一个类的全限定名来读取此类的二进制字节流到JVM中，然后转换为一个与目标类对应的java.lang.Class对象实例，在虚拟机提供了4种类加载器，启动（Bootstrap ClassLoader）类加载器、扩展（Extension ClassLoader）类加载器、应用程序（Application ClassLoader）类加载器、自定义（User ClassLoader）类加载器。</p>
+<p>1.启动类加载器：这个类加载器负责放在<JAVA_HOME>\lib目录中的，或者被-Xbootclasspath参数所指定的路径中的，并且是虚拟机识别的类库。用户无法直接使用。</JAVA_HOME></p>
+<p>2.扩展类加载器：这个类加载器由sun.misc.Launcher$AppClassLoader实现。它负责<JAVA_HOME>\lib\ext目录中的，或者被java.ext.dirs系统变量所指定的路径中的所有类库。用户可以直接使用。</JAVA_HOME></p>
+<p>3.应用程序类加载器：这个类由sun.misc.Launcher$AppClassLoader实现。是ClassLoader中getSystemClassLoader()方法的返回值。它负责用户路径（ClassPath）所指定的类库。用户可以直接使用。如果用户没有自己定义类加载器，默认使用这个。</p>
+<p>4.自定义加载器：用户自己定义的类加载器。</p>
+<p>启动类加载器（引导类加载器，Bootstrap ClassLoader ）<br>➢这个类加载使用C/C++语言实现的，嵌套在JVM内部。<br>➢它用来加载Java的核心库（ JAVA HOME/jre/lib/rt.jar.<br>resources. jar或sun. boot. class.path路径下的内容） ，用于提供JVM自身需要的类<br>➢并不继承自java. lang. ClassLoader，没有父加载器。<br>➢加载扩展类和应用程序类加载器，并指定为他们的父类加载器。<br>➢出于安全考虑，Bootstrap启动类加载器只加载包名为java、javax. sun 等开头的类.</p>
+<p> 扩展类加载器（ Extension ClassLoader）<br>➢Java语言编写，由sun.misc. Launcher$ExtClassLoader实现。➢派生于ClassLoader类<br>➢父类加载器为启动类加载器<br>➢从java.ext . dirs系统属性所指定的目录中加载类库，或从JDK的安<br>装目录的jre/lib/ext子目录（扩展目录）下加载类库。如果用户创建的JAR放在此目录下，也会自动由扩展类加载器加载。</p>
+<p>·应用程序类加载器（系统类加载器，AppClassLoader ）<br>➢java语言编写，由sun .mi sc. Launcher$AppClassLoader实现➢派生于ClassLoader类<br>➢父类加载器为扩展类加载器<br>➢它负责加载环境变量classpath或系统属性java. class.path指定路径下的类库<br>➢该类加载是程序中默认的类加载器，一般来说，Java应用的类都是由它来完成加载<br>➢通过ClassLoader#getSystemClassLoader （）方法可以获取到该类加载器</p>
+<p>· 为什么要自定义类加载器？<br>➢隔离加载类<br>➢修改类加载的方式➢扩展加载源<br>➢防止源码泄漏</p>
+<p>双亲委派机制<br>原理：当某个类加载器需要加载某个.class文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。<br>好处：<br>避免类的重复加载<br>保护程序安全，防止核心api被篡改</p>
+<p><img src="/2020/07/27/jvm/1.PNG" alt></p>
+<p>运行时数据区<br><img src="/2020/07/27/jvm/2.PNG" alt><br><img src="/2020/07/27/jvm/3.PNG" alt><br><img src="/2020/07/27/jvm/4.PNG" alt><br>程序计数器<br>内存空间小，线程私有.它可以看做是当前线程所执行的字节码的行号指示器.也就是说,线程主要是执行任务,而执行到哪里,需要使用程序计数器来记录.字节码解释器工作是就是通过改变这个计数器的值来选取下一条需要执行指令的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖计数器完成.<br>程序计数器就是储存下一条指令的地址</p>
+<p>程序计数器面试题<br>为什么使用pc寄存器记录当前线程执行地址？<br>因为cpu需要不停切换各个线程，所以要记录下来<br>使用pc寄存器存储字节码指令有什么用？<br>jvm字节码可以知道下一条需要执行什么指令</p>
+<p>Java栈：</p>
+<p>Java栈也称作虚拟机栈（Java Vitual Machine Stack），也就是我们常常所说的栈。JVM栈是线程私有的，每个线程创建的同时都会创建自己的JVM栈，互不干扰。</p>
+<p>Java栈是Java方法执行的内存模型。Java栈中存放的是一个个的栈帧，每个栈帧对应一个被调用的方法，在栈帧中包括局部变量表(Local Variables)、操作数栈(Operand Stack)、指向当前方法所属的类的运行时常量池的引用(Reference to runtime constant pool)、方法返回地址(Return Address)和一些额外的附加信息。当线程执行一个方法时，就会随之创建一个对应的栈帧，并将建立的栈帧压栈。当方法执行完毕之后，便会将栈帧出栈。因此可知，线程当前执行的方法所对应的栈帧必定位于Java栈的顶部。</p>
+<p>局部变量表：用来存储方法中的局部变量（包括在方法中声明的非静态变量以及函数形参）。对于基本数据类型的变量，则直接存储它的值，对于引用类型的变量，则存的是指向对象的引用。局部变量表的大小在编译期就可以确定其大小了，因此在程序执行期间局部变量表的大小是不会改变的。</p>
+<p>操作数栈：栈最典型的一个应用就是用来对表达式求值。在一个线程执行方法的过程中，实际上就是不断执行语句的过程，而归根到底就是进行计算的过程。因此可以这么说，程序中的所有计算过程都是在借助于操作数栈来完成的。</p>
+<p>指向运行时常量池的引用：因为在方法执行的过程中有可能需要用到类中的常量，所以必须要有一个引用指向运行时常量。</p>
+<p>方法返回地址：当一个方法执行完毕之后，要返回之前调用它的地方，因此在栈帧中必须保存一个方法返回地址。</p>
+<p>栈帧里面包含（局部变量表，方法返回地址，操作数栈，动态链接）</p>
+<p>本地方法栈<br>java虚拟机栈管理java方法的调用<br>本地方法栈管理本地方法的调用</p>
+<p>堆<br>Java中的堆是用来存储对象实例以及数组（当然，数组引用是存放在Java栈中的）。堆是被所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的。在JVM中只有一个堆。堆是Java垃圾收集器管理的主要区域，Java的垃圾回收机制会自动进行处理。</p>
+<p>Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer），其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配。</p>
+<p>堆空间分为老年代和年轻代。刚创建的对象存放在年轻代，而老年代中存放生命周期长久的实例对象。年轻代中又被分为Eden区和两个Survivor区(From Space和To Space)。新的对象分配是首先放在Eden区，Survivor区作为Eden区和Old区的缓冲，在Survivor区的对象经历若干次GC仍然存活的，就会被转移到老年代。 当一个对象大于eden区而小于old区（老年代）的时候会直接扔到old区。 而当对象大于old区时，会直接抛出OutOfMemoryError（OOM）。</p>
+<p>方法区<br>有时候也称为永久代（Permanent Generation），在方法区中，存储了每个类的信息（包括类的名称、修饰符、方法信息、字段信息）、类中静态变量、类中定义为final类型的常量、类中的Field信息、类中的方法信息以及编译器编译后的代码等。当开发人员在程序中通过Class对象中的getName、isInterface等方法来获取信息时，这些数据都来源于方法区域，同时方法区域也是全局共享的，在一定的条件下它也会被GC，在这里进行的GC主要是方法区里的常量池和类型的卸载。当方法区域需要使用的内存超过其允许的大小时，会抛出OutOfMemory的错误信息。</p>
+<p>在方法区中有一个非常重要的部分就是运行时常量池，用于存放静态编译产生的字面量和符号引用。运行时生成的常量也会存在这个常量池中，比如String的intern方法。它是每一个类或接口的常量池的运行时表示形式，在类和接口被加载到JVM后，对应的运行时常量池就被创建出来。</p>
+<p>gc垃圾回收机制</p>
+<p>哪些内存需要回收<br>什么时候回收<br>如何回收<br>垃圾：没有指针指向的运行对象</p>
+<p>引用计数算法（Reference Counting） 比较简单，对每个对象保存一个整型的引用计数器属性。用于记录对象被引用的情况。<br>对于一个对象A，只要有任何一个对象引用了A，则A的引用计数器就加1；当引用失效时，引用计数器就减1。只要对象A的引用计数器的值为0，即表示对象A不可能再被使用，可进行回收。</p>
+<p>·优点：实现简单，垃圾对象便于辨识；判定效率高，回收没有延迟性。<br>·缺点：<br>➢增加了存储空间的开销。<br>➢每次都要加法和减法操作，这增加了时间开销。<br>➢引用计数器有一个严重的问题，即无法处理循环引用的情况。这是一条致命缺陷，导致在Java的垃圾回收器中没有使用这类算法。</p>
+<p>可达性分析算法（根搜索算法，追踪性垃圾收集算法）</p>
+<p>· 基本思路：<br>➢可达性分析算法是以根对象集合（GC Roots）为起始点，按照从上至下的方式搜索被根对象集合所连接的目标对象是否可达。<br>➢使用可达性分析算法后，内存中的存活对象都会被根对象集合直接或间接连接着，搜索所走过的路径称为引用链（Reference Chain）<br>➢如果目标对象没有任何引用链相连，则是不可达的，就意味着该对象己经死亡，可以标记为垃圾对象。<br>➢在可达性分析算法中，只有能够被根对象集合直接或者间接连接的对象才是存活对象。</p>
+<p>相对于引用计数算法而言，可达性分析算法能有解决引用循环的问题，防止内存泄漏的发生。</p>
+<p>GC Roots一般为一下几种对象<br>· 虚拟机栈中引用的对象<br>➢比如：各个线程被调用的方法中使用到的参数、局部变量等。<br>· 本地方法栈内JNI （通常说的本地方法）引用的对象<br>方法区中类静态属性引用的对象<br>➢比如：Java类的引用类型静态变量<br>· 方法区中常量引用的对象<br>➢比如：字符串常量池（String Table）里的引用<br>· 所有被同步锁synchroni zed持有的对象<br>Java虚拟机内部的引用。<br>➢基本数据类型对应的Class对象，一些常驻的异常对象（如：<br>NullPointerException、OutOfMemoryError），系统类加载器。<br>· 反映j ava虛拟机内部情况的JMXBean、JVMTI中注册的回调、本地代码缓存等。</p>
+<p>小技巧：由于root采用栈方式放变量和指针，所以如果一个指针，它保存堆内存里面的对象，但是自己又不存放在堆内存里，那它就是一个root</p>
+<p>对象的finalization机制</p>
+<p>Java语言提供了对象终止（finalization）机制来允许开发人员提供对象被销毁之前的自定义处理逻辑。<br>当垃圾回收器发现没有引用指向一个对象，即：垃圾回收此对象之前，总会先调用这个对象的finalize（）方法。<br>finalize（）方法允许在子类中被重写，用于在对象被回收时进行资源释放。通常在这个方法中进行一些资源释放和清理的工作，比如关闭文件、套接字和数据库连接等。.</p>
+<p>·永远不要主动调用某个对象的finalize（）方法，应该交给垃圾回收机制调用。理由包括下面三点：<br>➢在finalize（） 时可能会导致对象复活。<br>➢finalize （） 方法的执行时间是没有保障的，它完全由Gc线程决定，极端情况下，若不发生GC，则finalize（） 方法将没有执行机会。| I<br>。 ➢一个糟糕的finalize （）会严重影响GC的性能。<br>从功能上来说，finalize （）方法与C+ +中的析构函数比较相似，但是Java采用的是基于垃圾回收器的自动内存管理机制，所以finalize（）方法在本质上不同于C++中的析构函数。<br>由于finalize（）方法的存在，虚拟机中的对象一般处于三种可能的状态。</p>
+<p>gc基本原理：将内存中不再使用的对象进行回收，gc中用于回收的方法叫做收集器。</p>
+<p>jvm内存结构五大区域：程序计数器，虚拟机栈（java栈），本地方法栈，堆区-线程共享，方法区-线程共享。<br>其中，程序计数器，虚拟机栈，本地方法栈随着线程的创建而创建，随着线程的消亡而消亡。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-面试题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/"
+    >面试题</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time datetime="2020-07-24T10:08:04.000Z" itemprop="datePublished">2020-07-24</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <ol>
+<li>聊聊list 和 set<br>集合分为 collection 和 map两个体系<br>collection下有list和set<br>list 是有序，可重复的集合<br>set 是无序，不可重复的集合<br>而这个list接口，分别有三个实现方法，分别是arraylist，linkedlist，vetor<br>arraylist底层使用数组结构，线程不安全<br>我的理解嗷，为什么不安全呢，是因为可能在多线程的时候一个线程会覆盖另一个线程的值，比如在多线程的时候，有a和b线程，a线程的值放进下标为0的数组，然后还没结束的时候b也在运行，然后b就覆盖了a的值，所以下标为0的位置保存了b的元素的值。<br>还有一种就是放元素的时候你a线程，就是说本来你数组长度只有10，a线程b线程同时进行，然后a已经到了第10个的位置，因为数组还没有扩容，所以会出现数组越界异常</li>
+</ol>
+<p>arraylist 扩容机制<br>就是它在构造的时候有一个有参构造和一个无参构造，无参构造就是创建一个长度为0的数组，<br>在有参构造里呢，创建的长度就是由参数决定的。接下来扩容的话，就是使用add方法，无参呢，就是增加数组长度到10，然后添加元素到数组里。然后它有一个ensure的方法，具体扩容就是原来的1.5倍</p>
+<p>linkedlist底层使用链表结构，对于插入，删除操作较多，建议使用，因为它有一个头节点还有一个尾节点，头节点就是存储上一个元素的位置，尾节点就是存储下个元素的位置，所以你要增加到a和b之间的话，a的尾部节点改变，b的头部节点改变，所以速度是比较快的。<br>vector是安全的，底层使用数组</p>
+<p>关于遍历的问题，使用迭代器，就是创建一个迭代器的对象，然后用hasnext的方法进行遍历</p>
+<ol start="2">
+<li>集合排序怎么实现（arraylist集合的排序）<br>排序的话，有两种吧，一种是自然排序，实现comparab接口，重写compareto方法；<br>一种是定制排序，需编写匿名内部类，</li>
+<li>集合遍历删除一个元素，怎么做到<br>先创建一个Iterator，然后调用hasnext方法，使用判断语句，判断相同就进行删除</li>
+<li>arraylist去重思路<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">removeDuplicate_1</span><span class="params">(ArrayList list)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;list.size()-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=list.size()-<span class="number">1</span>;j&gt;i;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(list.get(i).equals(list.get(j)))</span><br><span class="line">                    list.remove(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> list;        </span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">removeDuplicate_3</span><span class="params">(ArrayList list)</span></span>&#123;</span><br><span class="line">        ArrayList tempList = <span class="keyword">new</span> ArrayList(list.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!tempList.contains(list.get(i)))</span><br><span class="line">                tempList.add(list.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tempList;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>hashcode<br>首先把hashmap的kv保存在node对象里，这个k就会调用hashcode的方法就是获取hash值，然后通过哈希算法将hash值转换为数组下标嘛如果下表没有元素的话，就会把node元素添加进来，如果有的话就会把上一个取代掉</li>
+<li>jvm<br>jvm原理：Java源文件经过编译成字节码程序，通过jvm将每一条指令翻译成不同平台的机器码，通过特定平台运行。</li>
+</ol>
+<p>jvm执行过程<br>1加载.class文件<br>2管理并分配内存<br>3执行垃圾回收</p>
+<p>根类加载器<br>扩展类加载器<br>系统类加载器<br>自定义类加载器</p>
+<p>类的生命周期：加载 验证 准备 解析 初始化 使用 卸载</p>
+<p>加载（装载）<br>1.通过“类全名”来获取定义此类的二进制字节流</p>
+<p>2.将字节流所代表的静态存储结构转换为方法区的运行时数据结构</p>
+<p>3.在java堆中生成一个代表这个类的java.lang.Class对象，作为方法区这些数据的访问入口</p>
+<p>gc基本原理：将内存中不再使用的对象进行回收，gc中用于回收的方法叫做收集器。<br>jvm内存结构五大区域：程序计数器，虚拟机栈（java栈），本地方法栈，堆区-线程共享，方法区-线程共享。<br>其中，程序计数器，虚拟机栈，本地方法栈随着线程的创建而创建，随着线程的消亡而消亡。</p>
+<p>（运行时数据区）*程序计数器）<br>7. gc垃圾回收机制<br>8. 类的加载过程（类的加载器    ）加载 验证 准备 解析 初始化 使用 卸载<br>9. 序列化和反序列化<br>10. hashmap说一下你的理解吧<br>11. 关于匿名内部类</p>
+<ol start="12">
+<li><p>数据库 乐观锁 悲观锁<br>乐观锁：门锁着，先开门，不对再关门<br>悲观锁：有人进来必须要有钥匙<br>乐观锁 cas(compare and swap)</p>
+</li>
+<li><p>spring ioc bean的初始化</p>
+</li>
+<li><p>spring拦截器 handlerinterceptor prehandle posthandle aftercompletion</p>
+</li>
+<li></li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-idea快捷键" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -342,7 +791,7 @@
 <li>/一一LinkedList： 对于频繁的插入、删除操作，使用此类效率比ArrayList高；底层使用双向链表存储<br>/一一Vector：作为List接口的古老实现类；线程安全的，效率低；底层使用object【】 eLementData存储</li>
 </ul>
 <p>List<br>void add（int index， object ele）：在index位置插λele元素<br>boolean addALL（int index， Collection eles）： Mindex位置开始将eles中的所有元素添加进来Object get（int index）：获取指定index位置的元素<br>int indexOf（object obj）： 返回obj在集合中首次出现的位置<br>int lastIndexOf（Object obj）： 返回obj在当前集合中末次出现的位置<br>Object remove（int index）： 移除指定index位置的元素，并返回此元素<br>object set（int index， Object ele）：设置指定index位置的元素为ele<br>List subList（int fromIndex， int toIndex）：返回从fromIndex到toIndex位置的子集合</p>
-<p>怠結:常用方法<br>増: add(object obj)<br>刪!: remove(int index) / remove(object obj)改: set(int index, Object ele)<br>査: get(int index)<br>插: add(int index, Object ele)<br>長度: size()<br>遍万:①Iterator迭代器方式<br>@増彊for循珎<br>⑨普通的循珎</p>
+<p>怠結:常用方法<br>増: add(object obj)<br>刪!: remove(int index) / remove(object obj)改: set(int index, Object ele)<br>査: get(int index)<br>插: add(int index, Object ele)<br>長度: size()<br>遍历:①Iterator迭代器方式<br>@増彊for循珎<br>⑨普通的循珎</p>
 <ul>
 <li>Set接口的框架：</li>
 <li></li>
@@ -526,353 +975,6 @@ public String getSeasonDec(){
 
       
       <p><img src="/2020/06/23/%E5%B0%8F%E9%94%85/1.JPEG" alt></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-redis学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >redis学习笔记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-06-17T02:24:30.000Z" itemprop="datePublished">2020-06-17</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>开启redis redis-server<br>关闭 control+c</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-linux学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >linux学习笔记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-06-11T07:16:02.000Z" itemprop="datePublished">2020-06-11</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>首先要先装vmware 然后装centos运行起来，我装的是centos6<br>然后昨天看到的就是vmtools的安装，需要按安装压缩包，解压然后运行用终端运行并不断按确定，用了vmtools记得reboot重启</p>
-<p>linux结构目录<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.PNG" alt><br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.PNG" alt><br>xshell6链接linux服务器<br>linux开启sshd（终端输入setup，打开系统服务）新建会话，添加Linux服务器的IP地址，填写用户名密码<br>查看LinuxIP地址，打开终端输入ifconfig。</p>
-<p>linux的用户管理 用户家目录概念<br>增添用户 命令useradd xm 会在指定home目录下创建一个xm文件，登录进去后按pwd会显示在当前xm文件目录下<br>passwd xm 然后输入指定密码</p>
-<p>删除用户 userdel xm<br>删除用户+删除家目录 userdel -r xm<br>但除非特殊必要，一般来说不会删除家目录</p>
-<p>查询用户<br>id xm<br>在root状态下su xm切换到xm，按exit退出<br>查看当前用户 whoami<br>clear 清理当前终端</p>
-<p>增加组 groupadd group1<br>删除组 groupdel group1<br>增加用户直接加组 useradd -g 用户组 用户名<br>修改用户组 usermod -g 用户组 用户名</p>
-<p>配置文件<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.PNG" alt></p>
-<p>忘记root密码怎么办<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.PNG" alt></p>
-<p>linux运行级别<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.PNG" alt></p>
-<p>指令帮助<br>man help info<br>pwd显示当前的目录<br>ll查看文件列表<br>cd<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.PNG" alt></p>
-<p>绝对路径和相对路径<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.PNG" alt><br>cd ../../root 退两层找同级目录root</p>
-<p>mkdir 创建目录     mkdir -p 创建多级目录<br>rmdir删除空目录 如果空目录有内容那就无法删除<br>需要使用rm -rf删除<br>touch创建空文件</p>
-<p>cp 复制指令<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/13.PNG" alt><br>\cp强制覆盖不用提示</p>
-<p>rm删除指令 rm -rf删除目录<br>mv移动文件或重命名 </p>
-<p>cat浏览文件（只读） cat -n 显示行号<br>cat 文件名｜more是分页 空格下一页 ctrl+b上一页<br>less也是查看文字内容，但它并不是把文件加载之后才显示，相对于more查看大型文件更有效率</p>
-<blockquote>
-<p>指令和&gt;&gt;指令 指令显示的内容<br>覆盖 &gt;&gt;追加到文件的底部<br>echo”内容”&gt;或&gt;&gt;文件<br>echo $path输出环境变量<br>head显示开头文件内容 head -n 5 显示头五行<br>tail输出文件后几行 默认为10行<br>tail -f实时监控文档更新<br>ln指令 也叫软连接，相当于windows的快捷方式<br>history查看已执行过的历史命令</p>
-</blockquote>
-<p>date指令<br><img src="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/14.PNG" alt><br>cal显示日历<br>还有find和local指令</p>
-<p>压缩 gzip 文件名 解压 gunzip 文件.gz<br>常用 压缩 zip 解压 unzip 目录压缩 zip -r<br>解压 tar -zxvf 文件名</p>
-<p>查看文件所有者 ls -ahl</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-反射" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/05/%E5%8F%8D%E5%B0%84/"
-    >反射</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/05/%E5%8F%8D%E5%B0%84/" class="article-date">
-  <time datetime="2020-06-05T03:58:53.000Z" itemprop="datePublished">2020-06-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>一、反射的概述 特点：动态性<br>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。<br>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.</p>
-<p>以上的总结就是什么是反射<br>反射就是把java类中的各种成分映射成一个个的Java对象<br>例如：一个类有：成员变量、方法、构造方法、包等等信息，利用反射技术可以对一个类进行解剖，把个个组成部分映射成一个个对象。<br>     （其实：一个类中这些成员方法、构造方法、在加入类中都有一个类来描述）<br>如图是类的正常加载过程：反射的原理在与class对象。<br>熟悉一下加载的时候：Class对象的由来是将class文件读入内存，并为之创建一个Class对象。</p>
-<p>·Java反射机制提供的功能<br>➢在运行时判断任意一个对象所属的类<br>➢在运行时构造任意一个类的对象<br>➢在运行时判断任意一个类所具有的成员变量和方法➢在运行时获取泛型信息<br>➢在运行时调用任意一个对象的成员变量和方法➢在运行时处理注解<br>➢生成动态代理</p>
-<p>考点<br>反射机制与封装性<br>通过new和反射调用，用哪个</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void test3（） throws ClassNotFoundException 【</span><br><span class="line">//方式一： 调用运行时类的属性： .class</span><br><span class="line">Class clazz1 = Person.class；</span><br><span class="line">System. out . println（clazz1）；</span><br><span class="line">//方式二：通过运行时类的对象，调用getCLass（）</span><br><span class="line">Person p1 = new</span><br><span class="line">Pelson（）；</span><br><span class="line">Class c1azz2 = p1.getClass（）；</span><br><span class="line">System. out. println（clazz2）；</span><br><span class="line">1/方式三：凋用Class 的静杰方法： forName（String classPath）</span><br><span class="line">Class clazz3 = Class . forName （<span class="string">"com. atguigu. java.Person"</span>）；</span><br><span class="line">clazz3 = Class . forName（ <span class="string">"java. Lang. String"</span>）；</span><br><span class="line">System. out . println（clazz3）；</span><br><span class="line">System . out. println（clazz1 == c1azz2）；</span><br><span class="line">System. out. println（clazz1 == clazz3）；</span><br><span class="line">//方式四：使用类的加载器： ClassLoader</span><br><span class="line">ClassLoader classLoader = ReflectionTest. class. getClassLoader（ ）；</span><br><span class="line">Class clazz4 = classLoader . loadClass（ name： <span class="string">"com. atguigu. java . Person"</span>）；</span><br><span class="line">System. out . println（clazz4）；</span><br></pre></td></tr></table></figure>
-<p>复制路径 点击copy reference</p>
-<p>代理模式<br>静态代理：在编译期间代理类和被代理类都确定下来，不利于程序的拓展，每一个代理类只能为一个接口服务<br>动态代理：是指客户通过代理类来调用其他对象的方法，并且是在程序运行时根据需要动态创建目标类的代理对象<br>动态优点：接口声明的方法都被转移到调用处理器的一个集中方法处理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">interface ClothFactoryf&#123;</span><br><span class="line">void produceCloth( );</span><br><span class="line">&#125;</span><br><span class="line">//代理类</span><br><span class="line">class ProxyClothFactory implements ClothFactoryf&#123;</span><br><span class="line">private ClothFactory factory;//用被代理类进行实例化</span><br><span class="line">public ProxyClothFactory(ClothFactory factory)&#123;</span><br><span class="line">this.factory = factory;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public void <span class="function"><span class="title">produceCloth</span></span>()&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//被代理类</span><br><span class="line">class NikeClothFactory implements ClothFactoryf&#123;</span><br><span class="line">@Override</span><br><span class="line">public void produceCloth（） &#123;</span><br><span class="line">System. out . println（<span class="string">"Nike生产一批运动服"</span>）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class StaticProxyTest &#123;</span><br><span class="line">public static void main（String【】 args） &#123;</span><br><span class="line">//创建被代理类的对象</span><br><span class="line">ClothFactory nike = new NikeClothFactory（）；</span><br><span class="line">//创建代理类的对象</span><br><span class="line">ClothFactory proxyClothFactory = new ProxyClothFactory（nike）；</span><br><span class="line">proxyClothFactory . produceCloth（）；</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>静态代理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public interface HelloInterface &#123;</span><br><span class="line">    void sayHello();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Hello implements HelloInterface&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class HelloProxy implements HelloInterface&#123;</span><br><span class="line">    private HelloInterface helloInterface = new Hello();</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke sayHello"</span> );</span><br><span class="line">        helloInterface.sayHello();</span><br><span class="line">        System.out.println(<span class="string">"After invoke sayHello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        HelloProxy helloProxy = new HelloProxy();</span><br><span class="line">        helloProxy.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">输出：</span><br><span class="line">Before invoke sayHello</span><br><span class="line">Hello zhanghao!</span><br><span class="line">After invoke sayHello</span><br></pre></td></tr></table></figure>
-
-<p>动态代理<br>被代理类 和接口不变</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class ProxyHandler implements InvocationHandler&#123;</span><br><span class="line">    private Object object;</span><br><span class="line">    public ProxyHandler(Object object)&#123;</span><br><span class="line">        this.object = object;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        System.out.println(<span class="string">"Before invoke "</span>  + method.getName());</span><br><span class="line">        method.invoke(object, args);</span><br><span class="line">        System.out.println(<span class="string">"After invoke "</span> + method.getName());</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        </span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br></pre></td></tr></table></figure>
-<p>新来一个接口还有被代理类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public interface ByeInterface &#123;</span><br><span class="line">    void sayBye();</span><br><span class="line">&#125;</span><br><span class="line">public class Bye implements ByeInterface &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void <span class="function"><span class="title">sayBye</span></span>() &#123;</span><br><span class="line">        System.out.println(<span class="string">"Bye zhanghao!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.getProperties().setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface hello = new Hello();</span><br><span class="line">        ByeInterface <span class="built_in">bye</span> = new Bye();</span><br><span class="line"></span><br><span class="line">        InvocationHandler handler = new ProxyHandler(hello);</span><br><span class="line">        InvocationHandler handler1 = new ProxyHandler(<span class="built_in">bye</span>);</span><br><span class="line"></span><br><span class="line">        HelloInterface proxyHello = (HelloInterface) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);</span><br><span class="line"></span><br><span class="line">        ByeInterface proxyBye = (ByeInterface) Proxy.newProxyInstance(bye.getClass().getClassLoader(), bye.getClass().getInterfaces(), handler1);</span><br><span class="line">        proxyHello.sayHello();</span><br><span class="line">        proxyBye.sayBye();</span><br><span class="line">    &#125;</span><br><span class="line">    输出：</span><br><span class="line">    Before invoke sayHello</span><br><span class="line">    Hello zhanghao!</span><br><span class="line">    After invoke sayHello</span><br><span class="line">    Before invoke sayBye</span><br><span class="line">    Bye zhanghao!</span><br><span class="line">    After invoke sayBye</span><br></pre></td></tr></table></figure>
-<p>动态代理底层实现</p>
-<p>动态代理具体步骤：</p>
-<ol>
-<li>通过实现 InvocationHandler 接口创建自己的调用处理器；</li>
-<li>通过为 Proxy 类指定 ClassLoader 对象和一组 interface 来创建动态代理类；</li>
-<li>通过反射机制获得动态代理类的构造函数，其唯一参数类型是调用处理器接口类型；</li>
-<li>通过构造函数创建动态代理类实例，构造时调用处理器对象作为参数被传入。<br>详情参考<br><a href="https://www.jianshu.com/p/9bcac608c714" target="_blank" rel="noopener">https://www.jianshu.com/p/9bcac608c714</a></li>
-</ol>
-<p>aop<br>通过预编译和运行期动态代理实现程序功能的一种技术</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >学习笔记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-06-05T01:36:52.000Z" itemprop="datePublished">2020-06-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>1、ArrayList是基于索引的数据接口，它的底层是数组。它可以以O(1)时间复杂度对元素进行随机访问。与此对应，LinkedList是以元素列表的形式存储它的数据，每一个元素都和它的前一个和后一个元素链接在一起，在这种情况下，查找某个元素的时间复杂度是O(n)。<br>2、相对于ArrayList，LinkedList的插入，添加，删除操作速度更快，因为当元素被添加到集合任意位置的时候，不需要像数组那样重新计算大小或者是更新索引。<br>3、LinkedList比ArrayList更占内存，因为LinkedList为每一个节点存储了两个引用，一个指向前一个元素，一个指向下一个元素。<br>深入理解Java类实例化时jvm执行顺序<br>1.父类静态代码块：赋值b成功<br> 1.父类静态代码块：a的值1<br> 2.子类静态代码块：赋值sb成功<br> 2.子类静态代码块：sa的值1<br> 3.父类成员变量赋值：—&gt; c的值0<br> 3.父类成员变量赋值：—&gt; c的值12<br> 4.父类构造方式开始执行—&gt; a:1,b:1<br> 4.父类构造方式开始执行—&gt; c:12<br> 5.子类成员变量赋值—&gt;：sc的值0<br> 6.子类构造方式开始执行—&gt; sa:1,sb:1<br> 6.子类构造方式开始执行—&gt; sc:12<br>当我们进行new实例化进行操作的时候，JVM都进行了什么操作呢？<br>如果你看过深入理解jvm的话，应该会比较清楚，当我们使用new关键字进行实例化的时候，会进行如下几步处理：</p>
-<p>加载<br>此阶段加载类的字节码信息到内存<br>连接<br>此阶段进行验证，分配默认值，符号引用转直接引用<br>初始化<br>为成员进行赋值等</p>
-<p>使用<br>对实例进行操作比如sons.toString()</p>
-<p>对于我们的实例而言，我们只关注连接和初始化阶段即可。<br>连接阶段我们按照类结构(成员变量（先），方法(后)等)的顺序(不是书写顺序)，先对变量进行赋默认值0，对象的话为null。</p>
-<p>初始化的时候，就是对对象进行赋值，比如c执行initc()进行赋值。</p>
-<p>HASH</p>
-<p>1) HashMap：它根据键的hashCode值存储数据，大多数情况下可以直接定位到它的值，因而具有很快的访问速度，但遍历顺序却是不确定的。 HashMap最多只允许一条记录的键为null，允许多条记录的值为null。HashMap非线程安全，即任一时刻可以有多个线程同时写HashMap，可能会导致数据的不一致。如果需要满足线程安全，可以用 Collections的synchronizedMap方法使HashMap具有线程安全的能力，或者使用ConcurrentHashMap。</p>
-<p>(2) Hashtable：Hashtable是遗留类，很多映射的常用功能与HashMap类似，不同的是它承自Dictionary类，并且是线程安全的，任一时间只有一个线程能写Hashtable，并发性不如ConcurrentHashMap，因为ConcurrentHashMap引入了分段锁。Hashtable不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。</p>
-<p>(3) LinkedHashMap：LinkedHashMap是HashMap的一个子类，保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的，也可以在构造时带参数，按照访问次序排序。</p>
-<p>(4) TreeMap：TreeMap实现SortedMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。如果使用排序的映射，建议使用TreeMap。在使用TreeMap时，key必须实现Comparable接口或者在构造TreeMap传入自定义的Comparator，否则会在运行时抛出java.lang.ClassCastException类型的异常。</p>
-<p>从结构实现来讲，HashMap是数组+链表+红黑树</p>
-<p>栈是一种特殊的线性表，仅能在线性表的一端操作，栈顶允许操作，栈底不允许操作。 栈的特点是：先进后出，或者说是后进先出，从栈顶放入元素的操作叫入栈，取出元素叫出栈。</p>
-<p>队列与栈一样，也是一种线性表，不同的是，队列可以在一端添加元素，在另一端取出元素，也就是：先进先出。从一端放入元素的操作称为入队，取出元素为出队</p>
-<p>数组是可以再内存中连续存储多个元素的结构，在内存中的分配也是连续的，数组中的元素通过数组下标进行访问，数组下标从0开始。例如下面这段代码就是将数组的第一个元素赋值为 1。</p>
-<p>int[] data = new int[100]；data[0]  = 1;</p>
-<p>优点：<br>1、按照索引查询元素速度快<br>2、按照索引遍历数组方便</p>
-<p>缺点：<br>1、数组的大小固定后就无法扩容了<br>2、数组只能存储一种类型的数据<br>3、添加，删除的操作慢，因为要移动其他的元素。</p>
-<p>适用场景：<br>频繁查询，对存储空间要求不大，很少增加和删除的情况。</p>
-<p>ArrayList<br>底层数据结构是数组。线程不安全<br>LinkedList<br>底层数据结构是链表。线程不安全<br>Vector<br>底层数据结构是数组。线程安全</p>
-<p>map不能映射重复的键，一个键只能对应一个值</p>
-<p>抽象类与接口<br>抽象类要被子类继承，接口要被类实现。<br>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。<br>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。<br>抽象类可以有构造方法，接口中不能有构造方法。<br>抽象类中可以有普通成员变量，接口中没有普通成员变量<br>一个类可以实现多个接口，但只能继承一个抽象类</p>
-<p>JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。<br>JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。<br>具体来说 JDK 其实包含了 JRE，同时还包含了编译 java 源码的编译器 javac，还包含了很多 java 程序调试和分析的工具。简单来说：如果你需要运行 java 程序，只需安装 JRE 就可以了，如果你需要编写 java 程序，需要安装 JDK。</p>
-<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.PNG" alt></p>
-<p>强制类型转换<br>容量小的数据类型变量和容量大的数据类型变量做运算时，结果自动提升为容量大的数据类型</p>
-<p>三元运算符 int max = (m&gt;n)?m:n</p>
-<p>封装就是把普通的对象进行封装，对象的属性设为私有的，对外提供get和set方法，其他类只能通过get和set对对象属性值进行操作。继承是发生在两个类之间，一个类继承另一个类是说这个类属于另一个类，具有另一个类的所有属性和方法，同时它还可以有另一个类不具备的方法和属性。多态是建立在继承的基础上的，一个父类对象可以产生多个不同的子类对象，根据这些子类对象的不同可以具备不同的方法，也就是说表现出了不同的形态即多态</p>
-<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.PNG" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.jpeg" alt></p>
-<p>多态性<br>父类的引用指向子类的对象<br>Person p =new man();<br>当父类有了对象的多态性以后，在编译时只调用父类申明的方法，但运行时我们执行的是子类重写父类的方法。<br>编译看左边，运行看右边<br>值得一提是，不能调用类特有的方法和属性</p>
-<p>x instanceof a 检验x子类是否为父类a的对象</p>
-<p>自动装箱与自动拆箱<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png" alt><br>基本数据类型与包装类转换成string类型<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png" alt><br>sting类型转int型<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.png" alt><br>static 静态变量主要就是创建两个person对象然后他们共享共同的static属性<br>我们创建了类的多个对象，多个对象共享同一个静态变量。当通过某一对象修改静态变量时，会导致其他对象调用此变量时是修改过的。<br>1.静态变量随着类的加载而加载<br>2.静态变量的加载要早于对象的创建。<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.png" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.png" alt></p>
-<p>栈：局部变量 堆：创建出来的结构：对象和数组<br>方法区：类的加载信息，静态域，常量池</p>
-<p>单例设计模式<br>保证在软件系统中，一个类只能有一个对象实例<br>饿汉模式步骤：<br>私有化类的构造器<br>内部创建类的对象（要求此对象也要声明为静态的）<br>提供公共方法，返回类的对象<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.png" alt><br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.png" alt></p>
-<p>代码块<br><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.png" alt></p>
-<p>抽象类<br>抽象类是不能实例化的<br>继承抽象类就要实现它所有的方法</p>
-<p>代理模式<br>代理模式就是为其他对象提供一种代理以控制对这个对象的访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="built_in">test</span>&#123;</span><br><span class="line"><span class="function"><span class="title">psvm</span></span>()&#123;</span><br><span class="line">	server server =new server();</span><br><span class="line">	proxy p= new proxy(server);</span><br><span class="line">	p.browse();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface network&#123;</span><br><span class="line">	public void browse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class server implements network&#123;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		sout<span class="string">"aaa"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class proxy implements network&#123;</span><br><span class="line">	private network n;</span><br><span class="line">	public proxy(network n)&#123;</span><br><span class="line">		this.n = n;</span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">check</span></span> ()&#123;</span><br><span class="line">		sout<span class="string">"检查"</span></span><br><span class="line">	&#125;</span><br><span class="line">	public void <span class="function"><span class="title">browse</span></span>()&#123;</span><br><span class="line">		check();</span><br><span class="line">		work.browse;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>工厂模式<br>实现了创建者与调用者的分离，即将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。</p>
-<p><img src="/2020/06/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.png" alt></p>
-<p>子类重写的方法抛出的异常不大于父类被重写抛出的异常类型</p>
-<p>IDEA倒入module在struter中按加号倒入</p>
 
       
       <!-- reward -->

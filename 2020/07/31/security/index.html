@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    idea快捷键 |  Hexo
+    security |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-idea快捷键" class="article article-type-post" itemscope
+  <article id="spring-security" class="article article-type-spring" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  idea快捷键
+  security
 </h1>
  
 
@@ -59,8 +59,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-date">
-  <time datetime="2020-07-20T03:16:12.000Z" itemprop="datePublished">2020-07-20</time>
+      <a href="/2020/07/31/security/" class="article-date">
+  <time datetime="2020-07-31T04:45:17.000Z" itemprop="datePublished">2020-07-31</time>
 </a>
       
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">9</span>
+            <span class="post-count">585</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -102,7 +102,43 @@
       
 
       
-      <p>ctrl+alt+v 自动生成对象</p>
+      <p>认识SpringSecurity</p>
+<p>Spring Security 是针对Spring项目的安全框架，也是Spring Boot底层安全模块默认的技术选型，他可以实现强大的Web安全控制，对于安全控制，我们仅需要引入 spring-boot-starter-security 模块，进行少量的配置，即可实现强大的安全管理！<br>记住几个类：</p>
+<p>WebSecurityConfigurerAdapter：自定义Security策略</p>
+<p>AuthenticationManagerBuilder：自定义认证策略</p>
+<p>@EnableWebSecurity：开启WebSecurity模式</p>
+<p>Spring Security的两个主要目标是 “认证” 和 “授权”（访问控制）。</p>
+<p>“认证”（Authentication）</p>
+<p>身份验证是关于验证您的凭据，如用户名/用户ID和密码，以验证您的身份。</p>
+<p>身份验证通常通过用户名和密码完成，有时与身份验证因素结合使用。</p>
+<p> “授权” （Authorization）</p>
+<p>授权发生在系统成功验证您的身份后，最终会授予您访问资源（如信息，文件，数据库，资金，位置，几乎任何内容）的完全权限。</p>
+<p>这个概念是通用的，而不是只在Spring Security 中存在。</p>
+<ol>
+<li><p>导入依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写sprinng security配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuang.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableWebSecurity</span> <span class="comment">// 开启WebSecurity模式</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 定制请求的授权规则</span></span><br><span class="line">   <span class="comment">// 首页所有人可以访问</span></span><br><span class="line">   http.authorizeRequests().antMatchers(<span class="string">"/"</span>).permitAll()</span><br><span class="line">  .antMatchers(<span class="string">"/level1/**"</span>).hasRole(<span class="string">"vip1"</span>)</span><br><span class="line">  .antMatchers(<span class="string">"/level2/**"</span>).hasRole(<span class="string">"vip2"</span>)</span><br><span class="line">  .antMatchers(<span class="string">"/level3/**"</span>).hasRole(<span class="string">"vip3"</span>);</span><br><span class="line">  	<span class="comment">// 开启自动配置的登录功能</span></span><br><span class="line">	<span class="comment">// /login 请求来到登录页</span></span><br><span class="line">	<span class="comment">// /login?error 重定向到这里表示登录失败</span></span><br><span class="line">	http.formLogin();<span class="comment">//进入失败返回登陆界面</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//定义认证规则</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//在内存中定义，也可以在jdbc中去拿....</span></span><br><span class="line">   <span class="comment">//Spring security 5.0中新增了多种加密方式，也改变了密码的格式。</span></span><br><span class="line">   <span class="comment">//要想我们的项目还能够正常登陆，需要修改一下configure中的代码。我们要将前端传过来的密码进行某种方式加密</span></span><br><span class="line">   <span class="comment">//spring security 官方推荐的是使用bcrypt加密方式。</span></span><br><span class="line">   </span><br><span class="line">   auth.inMemoryAuthentication().passwordEncoder(<span class="keyword">new</span> BCryptPasswordEncoder())</span><br><span class="line">          .withUser(<span class="string">"kuangshen"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip2"</span>,<span class="string">"vip3"</span>)</span><br><span class="line">          .and()</span><br><span class="line">          .withUser(<span class="string">"root"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>,<span class="string">"vip3"</span>)</span><br><span class="line">          .and()</span><br><span class="line">          .withUser(<span class="string">"guest"</span>).password(<span class="keyword">new</span> BCryptPasswordEncoder().encode(<span class="string">"123456"</span>)).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>);</span><br><span class="line">          .withUser(<span class="string">"guest"</span>).password(<span class="string">"123456"</span>).roles(<span class="string">"vip1"</span>,<span class="string">"vip2"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
 
       
       <!-- reward -->
@@ -171,7 +207,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/07/31/security/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -187,19 +223,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            面试题
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/17/ioc%E4%B8%8Eaop/" class="article-nav-link">
+      <a href="/2020/07/29/mysql/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ioc与aop</div>
+        <div class="article-nav-title">mysql</div>
       </a>
     
   </nav>
