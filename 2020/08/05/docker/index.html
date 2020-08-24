@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    idea快捷键 |  Hexo
+    docker |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-idea快捷键" class="article article-type-post" itemscope
+  <article id="post-docker" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  idea快捷键
+  docker
 </h1>
  
 
@@ -59,8 +59,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-date">
-  <time datetime="2020-07-20T03:16:12.000Z" itemprop="datePublished">2020-07-20</time>
+      <a href="/2020/08/05/docker/" class="article-date">
+  <time datetime="2020-08-05T07:20:15.000Z" itemprop="datePublished">2020-08-05</time>
 </a>
       
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">9</span>
+            <span class="post-count">922</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -102,7 +102,28 @@
       
 
       
-      <p>ctrl+alt+v 自动生成对象</p>
+      <p>安装docker<br>yum install -y epel-release<br>yum install <a href="https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpm" target="_blank" rel="noopener">https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpm</a><br>docker version查看</p>
+<p>配置阿里云镜像加速<br>在/etc/sysconfig/docker上加上<br>other_args=”–registry-mirror=<a href="https://pi15f0aj.mirror.aliyuncs.com&quot;" target="_blank" rel="noopener">https://pi15f0aj.mirror.aliyuncs.com&quot;</a><br>ps -ef|grep docker 可查看</p>
+<p>升级内核<br> uname -r 查看版本<br> yum -y update nss<br>rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="noopener">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a><br>rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm" target="_blank" rel="noopener">http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm</a><br>yum –enablerepo=elrepo-kernel -y install kernel-lt<br>修改/etc/grub.conf文件，将default=1修改成default=0。</p>
+<p>下载tomcat<br>docker pull tomcat:8.0.52<br>docker run -it -p 8080:8080 tomcat:8.0.52</p>
+<p>用户名：root<br>密码：980622<br>docker 镜像加速 在/etc/sysconfig/docker other args=”–registry-mirror=https://“<br>帮助命令<br>service docker stop<br>service docker restart<br>docker version<br>docker info<br>docker –help 帮助命令</p>
+<p>镜像命令<br>docker images 查看本地镜像<br>docker search 在官方搜索<br>docker search -s 30 tomcat star&gt;30的<br>docker pull 下载镜像<br>docker rmi 删除本地镜像</p>
+<p>出现FATAL:kernel too old升级内核<br>容器命令<br>docker run -it centos<br>-i 以交互模式运行容器，通常与-t同时使用<br>-t 为容器重新分配一个伪输入终端，通常与-i同时使用<br>–name “容器新名字”，为容器指定一个名称<br>exit 进入容器后使用exit退出容器<br>ctrl+P+Q 容器不停止退出<br>容器通通删光 docker rm -f $(docker ps -q)</p>
+<p>打开新的终端，docker ps 查看docker有哪些容器在跑<br>dockern run -it 加容器名称与 docker start 区别<br>run是要创建容器拉取镜像，start是要容器已经存在<br>docker restart 容器<br>docker stop 容器id</p>
+<p>启动守护式容器<br>docker run -d centos<br>查看容器内运行的进程 docker top 容器id<br>查看容器内部细节 docker inspect 容器id<br>重新进入 docker attach 容器id 直接进入容器启动命令的终端，不会启动新的进程<br>docker exct -it 容器id bashshell 是在容器中打开新的终端，并且可以启动新的进程<br>从容器内拷贝文件到主机 docker cp 容器id：容器内路径 目的主机路径</p>
+<p>docker安装mysql<br>docker pull mysql:5.6 可指明版本号</p>
+<p>docker 启动tomcat（注意，新的tomcat版本号不能被浏览器所访问）自己用的是8.0.52<br>docker run -it -p 8080 tomcat:8.0.52(或者id号也行)<br>docker run -it -P id号 随机分配端口号<br>docker commit -a=”作者” -m=”del” id号 新名字</p>
+<p>容器数据卷<br>容器添加数据卷两种方法<br>docker run -it -v /宿主机绝对路径目录：/容器内目录 镜像名</p>
+<p>docker运行mysql<br>docker run -p 3306:3306 -v /zzyyuse/mysql/conf:/etc/mysql/conf.d -v /zzyyuse/mysql/logs:/logs -v /zzyyuse/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql</p>
+<p>docker exec -it MySQL运行成功后的容器ID     /bin/bash<br>mysql -uroot -p</p>
+<p>navicat链接不了的问题<br>ALTER USER ‘root’@’localhost’ IDENTIFIED BY ‘password’ PASSWORD EXPIRE NEVER;这里的password是你正在使用的密码</p>
+<p>ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’;#更新一下用户的密码这里的password为你修改的新密码。</p>
+<p> alter user ‘root’@’%’ identified by ‘password’ password expire never;</p>
+<p> alter user ‘root’@’%’ identified with mysql_native_password by ‘why’;//why是自己新修改的密码。</p>
+<p>FLUSH PRIVILEGES; #刷新权限，使自己的修改生效。</p>
+<p>use mysql<br>select user,host,plugin from user where user=’root’;<br>2变成1</p>
+<p>命令说明：<br>-p 3306:3306：将主机的3306端口映射到docker容器的3306端口。<br>–name mysql：运行服务名字<br>-v /zzyyuse/mysql/conf:/etc/mysql/conf.d ：将主机/zzyyuse/mysql录下的conf/my.cnf 挂载到容器的 /etc/mysql/conf.d<br>-v /zzyyuse/mysql/logs:/logs：将主机/zzyyuse/mysql目录下的 logs 目录挂载到容器的 /logs。<br>-v /zzyyuse/mysql/data:/var/lib/mysql ：将主机/zzyyuse/mysql目录下的data目录挂载到容器的 /var/lib/mysql<br>-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码。<br>-d mysql: 后台程序运行mysql</p>
+<p>docker redis<br>docker run -d -p 6379:6379 redis</p>
 
       
       <!-- reward -->
@@ -171,7 +192,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/07/20/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/08/05/docker/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -187,19 +208,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/24/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-nav-link">
+      <a href="/2020/08/10/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            面试题
+            网络编程
           
         </div>
       </a>
     
     
-      <a href="/2020/07/17/ioc%E4%B8%8Eaop/" class="article-nav-link">
+      <a href="/2020/07/31/security/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ioc与aop</div>
+        <div class="article-nav-title">security</div>
       </a>
     
   </nav>

@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    redis学习笔记 |  Hexo
+    Archives: 2020/8 |  Hexo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,277 +42,134 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-redis学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
+  <article class="articles">
     
-    <header class="article-header">
+    
+    <h1 class="page-type-title">2020/8</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2020" class="archive-year">2020</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/08/24/zp/" class="archive-article-date">
+  <time datetime="2020-08-24T03:41:14.000Z" itemprop="datePublished">08/24</time>
+</a>
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  redis学习笔记
-</h1>
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/08/24/zp/"
+    >zp</a> 
+</h2>
  
 
     </header>
     
-
     
-    <div class="article-meta">
-      <a href="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-06-17T02:24:30.000Z" itemprop="datePublished">2020-06-17</time>
-</a>
-      
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">667</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
-        </span>
-    </span>
-</div>
-
-      
-    </div>
-    
-
-    
-    
-
-
-
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>开启redis redis-server<br>关闭 control+c</p>
-<p>JSR107<br>Java Caching定义了5个核心接口，分别是CachingProvider， CacheManager， Cache， EntryFД Expiry.<br>CachingProvider定义了创建、配置、获取、管理和控制多个CacheManager。一个应用可LiEYJ#iFE↑CachingProvider，<br>CacheManager定义了创建、配置、获取、管理和控制多个唯一命名的Cache， 这些CacheTFEFCacheManagerETX. 一↑CacheManagerfXix↑CachingProviderFF#FF5.Cache是一个类似Map的数据结构并临时存储以Key为索引 |的值。一个Cache仅被一个<br>CacheManagerFFJFF.<br>Entrye NFiåECachekey一valueXf.<br>Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期， 条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
-<p><img src="/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png" alt><br>@cacheable 的几个属性<br>cacheNames/value： FEEE1FZE 148J8F；<br>key：缓存数据使用的key；可以用它来指定。默认是使用方法参数的值 1一方法的返回值<br>编写SpEL； #id；参数id的值 #aθ #p0 #root. args【0】<br>keyGenerator： key的生 成器；可以自己指定key的生成器的组件id<br>key/keyGenerator： =it 一i1EF<br>cacheManager：指定缓存管理器；或者cacheResol ver指定获取解析器<br>condition：指定符合条件的情况下才缓存；<br>， condition = “#id》0”<br>unless：否定缓存：当unless指定的条件为true，方法的返回值就不会被缓存；可以获取到结果进行判断<br>unless = “#result == nuLL”<br>sync：是否使用异步模式</p>
-<p>@cacheput 既调用方法，又更新缓存<br>*测试步骤：</p>
-<ul>
-<li>1、查询1号员工；查到的结果会放在缓存中；<br>key： 1 value： LastName： 张三</li>
-<li>2、 以后查询还是之前的结果</li>
-<li>3、 更新1号员工； 【lastName ： zhangsan； gender：0】</li>
-<li>将方法的返回值也放进缓存了；</li>
-<li>key：传入的employee对象值： 返回的employee对象；</li>
-<li>4、查询1号员工？</li>
-<li>应该是更新后的员工；</li>
-<li>key = “#employee. id”：使用传入的参数的员工id；<br>斗<br>key = “#result. id”：使用返回后的id</li>
-<li>@Cacheable的key是不能用#res<br>米<br>为什么是没更新前的？ 【1号 员工没有在缓存中更新】</li>
-<li>*/<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>（value = <span class="string">"emp"</span>，key = <span class="string">"#result. id"</span>）</span><br><span class="line"><span class="keyword">public</span> Employee updateEmp（ Employee employee）&#123;</span><br><span class="line">System. out . println（<span class="string">"updateEmp： "</span> +employee）；employeeMapper . updateEmp（ employee） ；</span><br><span class="line"><span class="keyword">return</span> employee；</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ul>
-<ul>
-<li>@CacheEvict：缓存清除<br>key：指定要清除的数据<br>allEntries = true： 指定清除这个缓存中所有的数据<br>beforeInvocation = false： 缓存的清除是否在方法之前执行<br>默认代表缓存清除操作是在方法执行之后执行；如果出现异常缓存就不会清除</li>
-<li>beforeInvocation = true：</li>
-<li>代表清除缓存操作是在方法运行之 前执行，无论方法是否出现异常，缓存都清除*</li>
-<li></li>
-<li>/<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheEvict</span>（value= <span class="string">"emp"</span> ， beforeInvocation = <span class="keyword">true</span><span class="comment">/*key = "#id"，*/</span>）</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> deleteEmp（Integer id）&#123;</span><br><span class="line">System. out. println（<span class="string">"deleteEmp："</span>+id）；</span><br><span class="line"><span class="comment">//employeeMapper. deleteEmpById（id）； </span></span><br><span class="line"><span class="keyword">int</span> = <span class="number">10</span>/<span class="number">0</span>；&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</li>
-</ul>
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-        <div class="declare">
-          <ul class="post-copyright">
-            <li>
-              <i class="ri-copyright-line"></i>
-              <strong>Copyright： </strong>
-              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
-            </li>
-          </ul>
-        </div>
-        
-    <footer class="article-footer">
-      
-          
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/06/17/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>
-      
-      
-
-    </footer>
-
   </div>
-
-  
-  
-  <nav class="article-nav">
-    
-      <a href="/2020/06/23/%E5%B0%8F%E9%94%85/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            小锅
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/06/11/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">linux学习笔记</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-  
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
-    </div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        app_id: '',
-        app_key: '',
-        path: window.location.pathname,
-        notify: 'false',
-        verify: 'false',
-        avatar: 'monsterid',
-        placeholder: '给我的文章加点评论吧~',
-        recordIP: true
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
-        });
-    }
-</script>
-<style>
-    #vcomments-box {
-        padding: 5px 30px;
-    }
-
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
-    }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
-    }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
-    }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
-    }
-</style>
-
-  
-
-  
-  
-  
-  
-  
-
 </article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/08/13/RabbitMQ/" class="archive-article-date">
+  <time datetime="2020-08-13T15:15:41.000Z" itemprop="datePublished">08/13</time>
+</a>
+       
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/08/13/RabbitMQ/"
+    >RabbitMQ</a> 
+</h2>
+ 
+
+    </header>
+    
+    
+  </div>
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/08/13/vue/" class="archive-article-date">
+  <time datetime="2020-08-13T15:14:59.000Z" itemprop="datePublished">08/13</time>
+</a>
+       
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/08/13/vue/"
+    >vue</a> 
+</h2>
+ 
+
+    </header>
+    
+    
+  </div>
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/08/10/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+  <time datetime="2020-08-10T08:03:40.000Z" itemprop="datePublished">08/10</time>
+</a>
+       
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/08/10/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+    >网络编程</a> 
+</h2>
+ 
+
+    </header>
+    
+    
+  </div>
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/08/05/docker/" class="archive-article-date">
+  <time datetime="2020-08-05T07:20:15.000Z" itemprop="datePublished">08/05</time>
+</a>
+       
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/08/05/docker/"
+    >docker</a> 
+</h2>
+ 
+
+    </header>
+    
+    
+  </div>
+</article>
+      
+      
+    </div>
+  </div>
+  
+  
+
+  
 </section>
       <footer class="footer">
   <div class="outer">
@@ -484,23 +341,6 @@
 </script>
 
 <!-- Tocbot -->
-
-
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto'
-  });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
