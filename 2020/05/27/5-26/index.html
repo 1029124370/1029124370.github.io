@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-关于5-26有感" class="article article-type-post" itemscope
+  <article id="post-5-26" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -59,7 +59,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/" class="article-date">
+      <a href="/2020/05/27/5-26/" class="article-date">
   <time datetime="2020-05-27T03:13:26.000Z" itemprop="datePublished">2020-05-27</time>
 </a>
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">441</span>
+            <span class="post-count">411</span>
         </span>
     </span>
 
@@ -102,7 +102,7 @@
       
 
       
-      <p>昨天搞了一天的hexo，在自己的台式能运行，在mac上一开始都还可以，到最后的部署hexo d 时一直出现git配置权限问题，但我是配置了公钥的，然后现在就现在mac上记载吧，到时拿去台式发布。<br><img src="/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/1.PNG" alt="错误图片"><br>然后这是公钥的几个命令ssh -T <a href="mailto:git@github.com">git@github.com</a><br>git config –list<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“<br>然后有个问题hexo一直加载不出来照片，解决办法就是安装插件</p>
+      <p>昨天搞了一天的hexo，在自己的台式能运行，在mac上一开始都还可以，到最后的部署hexo d 时一直出现git配置权限问题<br><img src="/2020/05/27/5-26/1.PNG" alt="错误图片"><br>然后这是公钥的几个命令ssh -T <a href="mailto:git@github.com">git@github.com</a><br>git config –list<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“<br>然后有个问题hexo一直加载不出来照片，解决办法就是安装插件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 <p>然后打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var cheerio = require(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in<span class="_">-a</span>-string</span><br><span class="line"><span class="keyword">function</span> getPosition(str, m, i) &#123;</span><br><span class="line">  <span class="built_in">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version = String(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="keyword">function</span>(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    	var link = data.permalink;</span><br><span class="line">	<span class="keyword">if</span>(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)</span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 1) + 1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 3) + 1;</span><br><span class="line">	// In hexo 3.1.1, the permalink of <span class="string">"about"</span> page is like <span class="string">".../about/index.html"</span>.</span><br><span class="line">	var endPos = link.lastIndexOf(<span class="string">'/'</span>) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		<span class="keyword">if</span> ($(this).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">			// For windows style path, we replace <span class="string">'\'</span> to <span class="string">'/'</span>.</span><br><span class="line">			var src = $(this).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">			<span class="keyword">if</span>(!/http[s]*.*|\/\/.*/.<span class="built_in">test</span>(src) &amp;&amp;</span><br><span class="line">			   !/^\s*\//.<span class="built_in">test</span>(src)) &#123;</span><br><span class="line">			  // For <span class="string">"about"</span> page, the first part of <span class="string">"src"</span> can<span class="string">'t be removed.</span></span><br><span class="line"><span class="string">			  // In addition, to support multi-level local directory.</span></span><br><span class="line"><span class="string">			  var linkArray = link.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  var srcArray = src.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">' &amp;&amp; elem != '</span>.<span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  if(srcArray.length &gt; 1)</span></span><br><span class="line"><span class="string">				srcArray.shift();</span></span><br><span class="line"><span class="string">			  src = srcArray.join('</span>/<span class="string">');</span></span><br><span class="line"><span class="string">			  $(this).attr('</span>src<span class="string">', config.root + link + src);</span></span><br><span class="line"><span class="string">			  console.info&amp;&amp;console.info("update link as:--&gt;"+config.root + link + src);</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;else&#123;</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info("no src attr, skipped...");</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info($(this));</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      data[key] = $.html();</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
@@ -173,7 +173,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/05/27/%E5%85%B3%E4%BA%8E5-26%E6%9C%89%E6%84%9F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://1029124370.github.io/2020/05/27/5-26/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -189,11 +189,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/05/27/%E4%BB%8A%E5%A4%A9%E8%AE%B2%E8%AE%B2Springmvc%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="article-nav-link">
+      <a href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            今天讲讲Spring那些事
+            关于maven下载慢的问题
           
         </div>
       </a>

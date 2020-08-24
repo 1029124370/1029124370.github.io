@@ -81,90 +81,6 @@
     
     
     
-    <article id="post-ioc与aop" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/17/ioc%E4%B8%8Eaop/"
-    >ioc与aop</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/07/17/ioc%E4%B8%8Eaop/" class="article-date">
-  <time datetime="2020-07-17T04:41:23.000Z" itemprop="datePublished">2020-07-17</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>控制反转ioc 面向切面编程aop</p>
-<p>I0C本质.<br>控制反转loC（Inversion of Control），是一种设计思想，DI（依赖注入）是实现IoC的一种方法，也有人认为DI只是loC的另一种说法。没有IoC的程序中，我们使用面向对象编程，对象的创建与对象间的依赖关系完全硬编码在程序中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方，个人认为所谓控制反转就是：获得依赖对象的方式反转了。<br>采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者合为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到了零配置的目的。</p>
-<ul>
-<li>‘控制反转是一种通过描述（XML或注解）并通过第3三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方法是依赖注入（Dependency Injection，DI）。**</li>
-</ul>
-<p>·Hello对象是谁创建的？<br>hello对象是由Spring创建的<br>·Hello对象的属性是怎么设置的？<br>hello对象的属性是由Spring容器设置的，<br>这个过程就叫控制反转：<br>控制：谁来控制对象的创建I传统应用程序的对象是由程序本身控制创建的，使用Spring后，对象是由Spring来创建的.<br>反转：程序本身不创建对象，而变成被动的接收对象.<br>依赖注入：就是利用set方法来进行注入的.<br>IOC是一种编程思想，由主动的编程变成被动的接收.<br>可以通过newClassPathXmlApplicationContext去浏览一下底层源码 .<br>OK，到了现在，我们彻底不用再程序中去改动了，要实现不同的操作，只需要在xml配置文件中进行修改，所谓的IoC，一句话搞定：对象由Spring来创建，管理，装配！</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">《！一&amp;lt； ！&amp;ndash；第一·神， 下示賦値！ &amp;ndash；&amp;gt；一》</span><br><span class="line">《！一《bean id="user" cLass= "com. kuang. pojo.User"》一》</span><br><span class="line">《！一《constructor一arg index= "Ѳ" vaLue= " E if ÉJava"/》一》</span><br><span class="line">《！一《/bean》一》</span><br><span class="line"></span><br><span class="line">《！一第二种方式：通过类型创建，不建议使用！ 一》</span><br><span class="line">《！一《bean id="user" cLass= "com. kuang. pojo.User"》一》</span><br><span class="line">《！一《constructor一arg type= "java. lang. String" value="qinjiang"/》一》《！一《/bean》一》</span><br><span class="line"></span><br><span class="line">《！一第三种， 直接通过参数名来设置一》</span><br><span class="line">《bean id="user" class="com. kuang . pojo.User"》</span><br><span class="line">《 constructor一arg name="name" value="k äjtÉ"/》</span><br><span class="line">《/bean》</span><br></pre></td></tr></table></figure>
-
-<p>5.2， BeanJtä<br>1 《！一2<br>id ： bean 的唯一 标识符，也就是相当于我们学的对象名<br>class ： bean 对象所对应的全限定名：包名+类型<br>4<br>name ：也是别名，而且name可以同时取多个别名<br>6<br>《bean id=”userT” class=”com. kuang. pojo.UserT” name= =”user2 u2，u3；u4”》<br>7<br>《property name=”name” value=” jtj å【JF一/“‘/》<br>8 《/bean》</p>
-<p>5.3、import<br>这个import， 一般用于团队开发使用，他可以将多个配置文件，导入合并为一个<br>假设，现在项目中有多个人开发，这三个人复制不同的类开发.不同的类需要注册在不同的bean中，我们可以利用import将所有人的beans.xml合并为一个总的！<br>·张三<br>·李四<br>·王五<br>·applicationContext.xml<br>1 《i mport resource=”beans. xm】”/》<br>2 《import resqurce=”beans2. xm1”/》<br>3 《import resource=”beans3. xm1”/》<br>使用的时候，直接使用总的配置就可以了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> Address address;</span><br><span class="line"><span class="keyword">private</span> String[] books ;</span><br><span class="line"><span class="keyword">private</span></span><br><span class="line">List&lt;String&gt; hobbys ;</span><br><span class="line"><span class="keyword">private</span> Map&lt;String,String&gt; card; <span class="keyword">private</span> Set&lt;String&gt; games;</span><br><span class="line"><span class="keyword">private</span> String wife;</span><br><span class="line"><span class="keyword">private</span> Properties info;</span><br><span class="line"></span><br><span class="line">《bean id=<span class="string">"student"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">" com. kuang. pojo . Student"</span> 》《！一第一一种， 普通值注入，value一》</span><br><span class="line">《property name=<span class="string">"name"</span> value=<span class="string">"小明"</span>/》</span><br><span class="line">《第二种bean注入》</span><br><span class="line">《property name=<span class="string">" address"</span> ref=<span class="string">"address"</span>/》</span><br><span class="line">《！一数组一》</span><br><span class="line">《property name= <span class="string">"books"</span>》</span><br><span class="line">《array》</span><br><span class="line">《value》红楼梦《/value》</span><br><span class="line">《value》西游记《/value》</span><br><span class="line">《value》水浒传《/value》</span><br><span class="line">《value》三国演义《/value》</span><br><span class="line">《/array》</span><br><span class="line">《/ property》</span><br><span class="line">《！一List一》</span><br><span class="line">《property name= <span class="string">"hobbys"</span>》</span><br><span class="line">《list 》</span><br><span class="line">《value》听歌《/value》</span><br><span class="line">《value 》看电影《/value》</span><br><span class="line">《value》打代码《/value》</span><br><span class="line">《/list》</span><br><span class="line">《/property》</span><br><span class="line">《！一Map一》</span><br><span class="line">《property name=<span class="string">"card"</span>》</span><br><span class="line">《map》</span><br><span class="line">《entry kev=<span class="string">""</span> value=<span class="string">""</span>/》</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!一Set一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt; <span class="attr">property</span> <span class="attr">name</span>=<span class="string">" games"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>LOL<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>COC<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>BOB<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/ <span class="attr">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!一null一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wife"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">null</span>/ &gt;</span></span><br><span class="line">I</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!一Properties一</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"driver"</span>&gt;</span>20190525<span class="tag">&lt;/<span class="name">prop</span>&gt;</span> <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"url"</span>&gt;</span> jj<span class="tag">&lt;/ <span class="attr">prop</span>&gt;</span></span><br><span class="line">&lt;prop key="username" &gt;root&lt; /prop&gt; &lt;prop key=" password" 123456&lt;1 prop&gt; &lt;/props&gt;</span><br><span class="line"><span class="tag">&lt;/ <span class="attr">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">/beans&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">《？xm1 version="1. O" encoding="UTF一8"？》</span><br><span class="line">《beans xmlns="http：//www. springframework. org/ schema/beans'</span><br><span class="line">xmlns：xsi="http： //www. w3. org/ 2001/XML Schema一instance"</span><br><span class="line">xmlns：p="http：/ /www. springf ramework . org/schema/ p"</span><br><span class="line">xmlns：c="http：//www. springf ramework . org/schema/c"</span><br><span class="line">xsi ： schemaLocati on="http： / /www. springframework. org/schema/beanshttps ：//www. springf ramework. org/schema/beans/spring一beans. xsd"》</span><br><span class="line">《！一p命名空间注入，可以直接注入属性的值： property一》</span><br><span class="line">《bean id="user" class="com. kuang. pojo.User" p：name="##" p：age="18"/》</span><br><span class="line">《！一C命名空间注入，通过构造器注入： construct一args一》</span><br><span class="line">《bean id="user2" class="com. kuang. pojo.User" c：age="18" c：name="XEpt"/》</span><br><span class="line">《/beans》</span><br></pre></td></tr></table></figure>
-<p>注意<br>xmlns：p=”http：/ /www. springf ramework . org/schema/ p”<br>xmlns：c=”http：//www. springf ramework . org/schema/c”</p>
-<p> 1.单例模式（Spring默认机制）<br>1 | 《bean id=”user2” class=”com. kuang. pojo. User” c：age=”18” c：name=”狂神”scope=”singleton”/》<br>2.原型模式：每次从容器中get的时候，都会产生一个新对象！<br>1 《bean id=”accountService” class=”com. something. DefaultAccountService”scope=”prototype”/》<br>3.其余的request、session、 application、 这些个只能在web开发中使用到！ </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">7.2、ByName自动装配</span><br><span class="line">2 byName：会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid！ 3</span><br><span class="line">4 《bean id="peop1e" class="com. kuang. pojo. Peop1e" autowi re="byName"》</span><br><span class="line">5</span><br><span class="line">《property name="name" value=" 小狂神呀"/》</span><br><span class="line">6 《/bean》</span><br><span class="line">7.3、ByType自动装配</span><br><span class="line">1</span><br><span class="line">《bean class="com. kuang. pojo. Cat"/》</span><br><span class="line">2</span><br><span class="line">《bean class="com. kuang. pojo. Dog"/》</span><br><span class="line">34</span><br><span class="line">《！一 </span><br><span class="line">5</span><br><span class="line">byName：会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid！</span><br><span class="line">6</span><br><span class="line">byType：会自动在容器上下文中查找，和自己对象属性类型相同的bean ！</span><br><span class="line">7</span><br><span class="line">一》</span><br><span class="line">8</span><br><span class="line">《bean id="people" class="com. kuang. pojo. People" autowi re="byType"》</span><br><span class="line">9</span><br><span class="line">《property name="name" value=" 小狂神呀"/》</span><br><span class="line">10</span><br><span class="line">《/bean》</span><br><span class="line">11</span><br></pre></td></tr></table></figure>
-
-<p>spring注解<br>@component = <bean id class><br>    使用注解，在xml配置上这句<br>&lt;context:component-scan base-package=””&gt;<br><a href="context:annotation-config">context:annotation-config</a><br>还有几个衍生注解<br>dao @repository<br>service @service<br>controller @controller</bean></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
     <article id="post-IO流体系结构" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -394,72 +310,6 @@ public String getSeasonDec(){
     return seasonDec;
 }</code></pre><p>}</p>
 <p>}</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-小锅" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/23/%E5%B0%8F%E9%94%85/"
-    >小锅</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/23/%E5%B0%8F%E9%94%85/" class="article-date">
-  <time datetime="2020-06-23T03:50:05.000Z" itemprop="datePublished">2020-06-23</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p><img src="/2020/06/23/%E5%B0%8F%E9%94%85/1.JPEG" alt></p>
 
       
       <!-- reward -->
@@ -947,6 +797,142 @@ public String getSeasonDec(){
 <li>便于线程管理</li>
 </ol>
 
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-关于maven下载慢的问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"
+    >关于maven下载慢的问题</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/28/%E5%85%B3%E4%BA%8Emaven%E4%B8%8B%E8%BD%BD%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-05-28T10:59:00.000Z" itemprop="datePublished">2020-05-28</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>今天用maven创建项目时，遇到一点问题就是下载速度过慢，然后换了一下阿里云的景象，主要操作如下<br>在maven的con下setting文件里添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line"></span><br><span class="line">&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line"></span><br><span class="line">&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">&lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line"></span><br><span class="line">&lt;/mirror&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在idea的maven配置runner里加-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true到vm里</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-5-26" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/27/5-26/"
+    >关于5.26有感</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/27/5-26/" class="article-date">
+  <time datetime="2020-05-27T03:13:26.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>昨天搞了一天的hexo，在自己的台式能运行，在mac上一开始都还可以，到最后的部署hexo d 时一直出现git配置权限问题<br><img src="/2020/05/27/5-26/1.PNG" alt="错误图片"><br>然后这是公钥的几个命令ssh -T <a href="mailto:git@github.com">git@github.com</a><br>git config –list<br>ssh-keygen -t rsa -C “<a href="mailto:youremail@example.com">youremail@example.com</a>“<br>然后有个问题hexo一直加载不出来照片，解决办法就是安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>然后打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var cheerio = require(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in<span class="_">-a</span>-string</span><br><span class="line"><span class="keyword">function</span> getPosition(str, m, i) &#123;</span><br><span class="line">  <span class="built_in">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version = String(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="keyword">function</span>(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    	var link = data.permalink;</span><br><span class="line">	<span class="keyword">if</span>(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)</span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 1) + 1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	   var beginPos = getPosition(link, <span class="string">'/'</span>, 3) + 1;</span><br><span class="line">	// In hexo 3.1.1, the permalink of <span class="string">"about"</span> page is like <span class="string">".../about/index.html"</span>.</span><br><span class="line">	var endPos = link.lastIndexOf(<span class="string">'/'</span>) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		<span class="keyword">if</span> ($(this).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">			// For windows style path, we replace <span class="string">'\'</span> to <span class="string">'/'</span>.</span><br><span class="line">			var src = $(this).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">			<span class="keyword">if</span>(!/http[s]*.*|\/\/.*/.<span class="built_in">test</span>(src) &amp;&amp;</span><br><span class="line">			   !/^\s*\//.<span class="built_in">test</span>(src)) &#123;</span><br><span class="line">			  // For <span class="string">"about"</span> page, the first part of <span class="string">"src"</span> can<span class="string">'t be removed.</span></span><br><span class="line"><span class="string">			  // In addition, to support multi-level local directory.</span></span><br><span class="line"><span class="string">			  var linkArray = link.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  var srcArray = src.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">				return elem != '</span><span class="string">' &amp;&amp; elem != '</span>.<span class="string">';</span></span><br><span class="line"><span class="string">			  &#125;);</span></span><br><span class="line"><span class="string">			  if(srcArray.length &gt; 1)</span></span><br><span class="line"><span class="string">				srcArray.shift();</span></span><br><span class="line"><span class="string">			  src = srcArray.join('</span>/<span class="string">');</span></span><br><span class="line"><span class="string">			  $(this).attr('</span>src<span class="string">', config.root + link + src);</span></span><br><span class="line"><span class="string">			  console.info&amp;&amp;console.info("update link as:--&gt;"+config.root + link + src);</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;else&#123;</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info("no src attr, skipped...");</span></span><br><span class="line"><span class="string">			console.info&amp;&amp;console.info($(this));</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      data[key] = $.html();</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
